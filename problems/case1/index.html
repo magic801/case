@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>test css</title>
+  <link rel="stylesheet" type="text/css" href="./style.css">
+</head>
+<body>
+  <div>
+    <input id="btn" type="button" value="click">
+  </div>
+
+  <script type="text/javascript">
+    let timer = null
+    document.getElementById('btn').addEventListener('click', () => {
+      clearTimeout(timer)
+      timer = setTimeout(() => {
+        console.log('click')
+      }, 1000)
+    })
+  </script>
+</body>
+</html>
