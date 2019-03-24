@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Socket</title>
+  <link rel="stylesheet" type="text/css" href="./style.css">
+</head>
+<body>
+  <div>
+    <input id="btn" type="button" value="click">
+  </div>
+
+  <script type="text/javascript">
+      var onOpen = function() {
+              console.log("Socket opened.");
+              socket.send("Hi, Server!");
+          },
+          onClose = function() {
+              console.log("Socket closed.");
+          },
+          onMessage = function(data) {
+              console.log("We get signal:");
+              console.log(data);
+          },
+          onError = function() {
+              console.log("We got an error.");
+          },
+          socket = new WebSocket("ws://127.0.0.1:8080/");
+      socket.onopen = onOpen;
+      socket.onclose = onClose;
+      socket.onerror = onError;
+      socket.onmessage = onMessage;
+  </script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>事件冒泡</title>
+  <link rel="stylesheet" type="text/css" href="./style.css">
+</head>
+<body>
+  <div id="container" style="border: 1px solid red; padding: 10px;">
+    <input id="btn" type="button" value="click">
+  </div>
+
+  <script type="text/javascript">
+    document.ready
+
+    let parent = document.getElementById('container')
+    let child = document.getElementById('btn')
+
+    parent.addEventListener('click', (e) => {
+      console.log('parent 冒泡')
+    }, false)
+
+    parent.addEventListener('click', (e) => {
+      console.log('parent 捕获')
+    }, true)
+
+    child.addEventListener('click', (e) => {
+      console.log('child 冒泡')
+    }, true)
+
+    window.onkeydown = (e) => {
+      console.log(e)
+    }
+
+  </script>
+</body>
+</html>
