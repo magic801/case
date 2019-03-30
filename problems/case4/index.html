@@ -8,10 +8,21 @@
 </head>
 <body>
   <div id="app">
-    <h6>{{ message }}</h3>
+    <h6>{{ message }}</h6>
+    <cp1></cp1>
+    <child></child>
   </div>
 
   <script type="text/javascript">
+    Vue.component('cp1', {
+      template: '<p>cp1</p>'
+    })
+
+    let child = {
+      template: '<p>this is child.</p>'
+    }
+
+
     let vm = new Vue({
       el: '#app',
       // template: '<div><span>ss</span></div>',
@@ -19,6 +30,10 @@
         return {
           message: 'haha'
         }
+      },
+
+      components: {
+        child
       },
 
       beforeCreate () {

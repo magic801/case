@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "html2canvas": "^1.0.0-alpha.12",
+    "http-proxy": "^1.17.0",
+    "vue": "^2.6.10"
+  },
+  "devDependencies": {}
+}

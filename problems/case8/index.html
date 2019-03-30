@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>history</title>
+</head>
+<body>
+  <div>
+    <input id="btn" type="button" value="click">
+  </div>
+
+  <script type="text/javascript">
+    window.onpopstate = (e) => {
+      console.log('onpopstate')
+      console.log(e)
+    }
+    window.onhashchange = (e) => {
+      console.log('onhashchange')
+      console.log(e)
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>canvas</title>
+  <link rel="stylesheet" type="text/css" href="./style.css">
+  <script src="../../node_modules/html2canvas/dist/html2canvas.js"></script>
+</head>
+<body>
+  <div>
+    <canvas id="cs"></canvas>
+  </div>
+
+  <div id="app" style="display: none">
+    <p>html2canvas</p>
+    <img src="http://static-d.iqiyi.com/paopaoh5act/wageslave/result/20190220/page-results-img-2.jpg" />
+  </div>
+
+  <script type="text/javascript">
+    let fixxs = document.getElementById('cs')
+    let ctx = fixxs.getContext('2d')
+    let img = new Image()
+    img.setAttribute('crossOrigin', 'anonymous')
+    // img.src = './images/1.png'
+    // img.src = 'http://static-d.iqiyi.com/paopaoh5act/wageslave/result/20190220/page-results-img-2.jpg'
+    img.src = 'http://localhost:8080/'
+    img.onload = () => {
+      ctx.drawImage(img, 0, 0)
+      // fixxs.toDataURL('image/png')
+    }
+
+    // html2canvas(document.getElementById('app'), (canvas) => {
+    //   canvas.toDataURL()
+    // })
+    
+  </script>
+</body>
+</html>
