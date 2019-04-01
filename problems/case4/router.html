@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>vue router</title>
+  <link rel="stylesheet" type="text/css" href="./style.css">
+  <script src="../../node_modules/vue/dist/vue.js"></script>
+  <script src="../../node_modules/vue-router/dist/vue-router.js"></script>
+</head>
+<body>
+  <div id="app">
+    <h6>{{ message }}</h6>
+    <p>
+      <router-link to="/c1">go to c1</router-link>
+      <router-link to="/c2">go to c2</router-link>
+    </p>
+    <transition name="slide-right">
+      <router-view></router-view>
+    </transition>
+    <router-view name="other"></router-view>
+  </div>
+
+  <script type="text/javascript">
+    let p404 = {
+      template: `<div>
+        <h4>404</h4>
+        <h6>{{ $route.params.pathMatch }}</h6>
+      </div>`
+    }
+
+    let po404 = {
+      template: `<div>
+        <h4>other</h4>
+        <h6>{{ $route.params.pathMatch }}</h6>
+      </div>`
+    }
+
+    let child1 = {
+      template: '<p>this is child1.</p>'
+    }
+
+    let child2 = {
+      template: '<p>this is child2.</p>'
+    }
+
+    let user = {
+      props: ['id'],
+      template: `<div>
+        <p>parent is {{ name }} , id is {{ id }}</p>
+        <router-view></router-view>
+      </div>`,
+      computed: {
+        name () {
+          return this.$route.params.id
+        }
+      },
+      beforeRouteUpdate (to, from, next) {
+        console.log(to)
+        console.log(from)
+        next()
+      }
+    }
+
+    let uinfo = {
+      template: `<p>i am the info</p>`
+    }
+
+    let ulike = {
+      template: `<h5>likekekk..</h5>`
+    }    
+
+    const routes = [{
+      path: '*',
+      components: {
+        default: p404,
+        other: po404
+      }
+    }, {
+      path: '/c1',
+      component: child1
+    }, {
+      path: '/c2',
+      component: child2,
+      alias: '/ccc',
+      meta: {
+        require: true
+      },
+      meta2: {
+        require: false
+      }
+    }, {
+      path: '/user/:id',
+      component: user,
+      props: (route) => ({
+        id: route.params.id
+      }),
+      children: [{
+        path: 'uinfo',
+        component: uinfo
+      }, {
+        path: 'ulike',
+        component: ulike
+      }, {
+        path: '/cao',
+        redirect: '/c1'
+      }]
+    }]
+
+    const router = new VueRouter({
+      // mode: 'history',
+      routes
+    })
+
+    router.beforeEach((to, from, next) => {
+      if (to.matched.some(record => record.meta.require1)){
+        // let result = window.confirm('gay', 'to leave?')
+        // if (result) {
+        //   next()
+        // } else {
+        //   next(false)
+        // }
+      } else {
+        next()
+      }
+      console.log('beforeEach')
+    })
+
+    router.beforeResolve((to, from, next) => {
+      console.log('beforeResolve')
+      next()
+    })
+
+
+    let vm = new Vue({
+      el: '#app',
+      data () {
+        return {
+          message: 'haha'
+        }
+      },
+      router
+    })
+  </script>
+</body>
+</html>

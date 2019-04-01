@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>vue</title>
+  <link rel="stylesheet" type="text/css" href="./style.css">
+  <script src="../../node_modules/vue/dist/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <h6>{{ message }}</h6>
+    <p v-demo="{color: 'red', text: 'nihao'}"></p>
+    <input v-focus>
+    <cp1></cp1>
+    <child></child>
+  </div>
+
+  <script type="text/javascript">
+    Vue.component('cp1', {
+      template: '<p>cp1</p>'
+    })
+
+    Vue.directive('demo', (el, binding) => {
+      el.style.color = binding.value.color
+      el.innerHTML = binding.value.text
+    })
+
+    Vue.directive('focus', {
+      inserted: (el) => {
+        el.focus()
+      }
+    })
+
+    let child = {
+      template: '<p>this is child.</p>'
+    }
+
+
+    let vm = new Vue({
+      el: '#app',
+      // template: '<div><span>ss</span></div>',
+      data () {
+        return {
+          message: 'haha'
+        }
+      },
+
+      components: {
+        child
+      }
+      
+    })
+  </script>
+</body>
+</html>
