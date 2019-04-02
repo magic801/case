@@ -1,12 +1,18 @@
 var path = require("path")
 
 module.exports = {
+  devtool: 'source-map',
   entry: [
-    './main.js'
+    './app/main.js'
   ],
   output: {
-    path: path.resolve(__dirname, "./dist"),
-    publicPath: "build",
+    path: path.resolve(__dirname, "./public"),
+    // publicPath: "build",
     filename: "bundle.js"
+  },
+
+  devServer: {
+    // contentBase: './public',
+    inline: true
   }
 }

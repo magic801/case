@@ -1,11 +1,14 @@
 {
 	"scripts": {
-		"build": "webpack"
+		"build": "webpack  --mode development",
+		"str": "node_modules/.bin/webpack app/main.js public/bundle.js --mode development",
+    "server": "webpack-dev-server --open"
 	},
 	"dependencies": {
 		"webpack": "^4.29.6"
 	},
 	"devDependencies": {
-		"webpack-cli": "^3.3.0"
+		"webpack-cli": "^3.3.0",
+		"webpack-dev-server": "^3.2.1"
 	}
 }
