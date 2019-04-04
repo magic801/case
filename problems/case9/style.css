@@ -1,0 +1,30 @@
+html {
+  /*font-size: 20vw;*/
+}
+
+@media screen and (max-width: 320px) {
+  html {
+    font-size: 64px;
+  }
+}
+
+@media screen and (min-width: 540px) {
+  html {
+    font-size: 108px;
+  }
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+.kuang {
+  height: 200px;
+  width: 155px;
+}
+
+.htmlimg {
+  height: 100%;
+  width: auto;
+}

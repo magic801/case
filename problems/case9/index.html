@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>html2canvas</title>
+  <link rel="stylesheet" type="text/css" href="./style.css">
+  <script src="http://statics-web.iqiyi.com/common/jssdk/iqiyiJsBridge-v2-min.js"></script>
+  <script src="../../node_modules/html2canvas/dist/html2canvas.js"></script>
+</head>
+<body>
+  <div id="app">
+    <div class="kuang">
+      <div class="htmlimg" style="background-image: url(http://static-d.iqiyi.com/paopaoh5/guess/superstar/20190402/345040447.png); background-size: cover;"></div>
+    </div>
+    <div class="kuang">
+      <img class="htmlimg" src="http://static-d.iqiyi.com/paopaoh5/guess/superstar/20190402/345040447.png">
+    </div>
+  </div>
+  <div>
+    <input type="button" id="btn" value="click" />
+  </div>
+
+  <script type="text/javascript">
+    document.getElementById('btn').addEventListener('click', () => {
+      html2canvas(document.getElementById('app'), {
+        useCORS: true
+      }).then((canvas) => {
+        let base64 = canvas.toDataURL('image/png')
+        alert(window.iqiyi)
+        if (window.iqiyi) {
+          window.iqiyi.commonInvoke('JSBRIDGE_SAVE_IMAGE', {
+            imageContentStr: base64
+          }, function (data) {
+          })
+        }
+      })
+    })
+  </script>
+</body>
+</html>
