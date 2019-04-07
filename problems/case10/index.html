@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>css</title>
+  <link rel="stylesheet" type="text/css" href="./style.css">
+</head>
+<body>
+  <div>
+    <input id="btn" type="button" value="click">
+  </div>
+
+  <div>
+    <span class="color-span">33</span>
+    <span class="color-span" style="display: inherit;">inherit</span>
+    <span class="color-span">44</span>
+  </div>
+
+  <div style="display: flex;">
+    <div>flex1</div>
+    <div>flex2</div>
+    <div>flex3</div>
+    <div>flex4</div>
+  </div>
+
+  <div>
+    <span>1</span>
+  </div>
+  <div>2</div>
+
+  <script type="text/javascript">
+    let timer = null
+    document.getElementById('btn').addEventListener('click', () => {
+      clearTimeout(timer)
+      timer = setTimeout(() => {
+        console.log('click')
+      }, 1000)
+    })
+  </script>
+</body>
+</html>

@@ -16,6 +16,19 @@
   </div>
 
   <script type="text/javascript">
+    let mixin = {
+      data () {
+        return {
+          name: 'mixin',
+          like: 'mixin'
+        }
+      },
+
+      created () {
+        console.log(`in mixin`)
+      }
+    }
+
     Vue.component('cp1', {
       template: '<p>cp1</p>'
     })
@@ -37,12 +50,18 @@
 
 
     let vm = new Vue({
+      mixins: [mixin],
       el: '#app',
       // template: '<div><span>ss</span></div>',
       data () {
         return {
+          name: 'vue',
           message: 'haha'
         }
+      },
+
+      created () {
+        console.log(`in vue`)
       },
 
       components: {
