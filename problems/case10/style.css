@@ -27,3 +27,9 @@ html, body {
 .color-span {
   background-color: red
 }
+
+.box {
+  height: 20vh;
+  border: 1px solid gray;
+  position: relative;
+}
