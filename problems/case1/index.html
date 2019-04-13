@@ -2,22 +2,75 @@
 <html>
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ajax抖动</title>
+  <title>防抖&节流</title>
   <link rel="stylesheet" type="text/css" href="./style.css">
 </head>
 <body>
   <div>
-    <input id="btn" type="button" value="click">
+    <input id="btn1" type="button" value="防抖">
+    <input id="btn2" type="button" value="节流">
   </div>
 
   <script type="text/javascript">
-    let timer = null
-    document.getElementById('btn').addEventListener('click', () => {
-      clearTimeout(timer)
-      timer = setTimeout(() => {
-        console.log('click')
-      }, 1000)
+    let fangdou = (action) => {
+      let timer = null
+
+      return function () {
+        clearTimeout(timer)
+        timer = setTimeout(() => {
+          action.call(this)
+        }, 1000)
+      }
+    }
+
+    let dofd = fangdou(() => {
+      console.log('fd')
     })
+
+    document.getElementById('btn1').addEventListener('click', () => {
+      dofd()
+    })
+
+    function jieliu(action) {
+      let duration = 1000
+      let timer = null
+      let begin = 0
+      return function () {
+        if (+new Date() - begin > duration) {
+          action.call(this)
+          begin = +new Date()
+        }
+      }
+    }
+
+    let dojl = jieliu(() => {
+      console.log('jl')
+    })
+
+    document.getElementById('btn2').addEventListener('click', () => {
+      dojl()
+    })
+
+    let curry = (action) => {
+      let list = []
+      return function () {
+        if (arguments.length > 0) {
+          [].push.apply(list, arguments)
+        } else {
+          action.call(this, list)
+        }
+      }
+    }
+
+    let cost = curry((list) => {
+      console.log(list)
+    })
+
+    cost(1)
+    cost(10)
+    cost(100)
+
+    cost()
   </script>
 </body>
 </html>
