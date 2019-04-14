@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>继承</title>
+  <link rel="stylesheet" type="text/css" href="./style.css">
+</head>
+<body>
+
+  <script type="text/javascript">
+    function jc (name) {
+      this.name = name || 'jc'
+      this.likes = {
+        one: 1,
+        two: 2
+      }
+      console.log(`jc  name=${name}`)
+    }
+
+    jc.prototype.say = () => {
+      console.log('hello world.')
+    }
+
+    function child1 () {
+    }
+    child1.prototype = new jc()
+
+    function child2 (name) {
+      jc.call(this, name)
+    }
+
+    function child3(name) {
+      let instance = new jc()
+      instance.name = name
+      return child3
+    }
+
+    function child4(name) {
+      jc.call(this, name)
+    }
+    child4.prototype = new jc()
+    child4.prototype.constructor = child4
+
+    function child5(name) {
+      jc.call(this, name)
+    }
+    (function () {
+      let su = function () {}
+      su.prototype = jc.prototype
+      child5.prototype = new su()
+      child5.prototype.constructor = child5
+    })()
+
+    // let c1 = new child1('child1')
+    // let c2 = new child2('child2')
+    // let c3 = new child3('child3')
+    // let c4 = new child4('child4')
+    let c5 = new child5('child5')
+    
+  </script>
+</body>
+</html>
