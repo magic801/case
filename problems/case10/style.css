@@ -1,5 +1,5 @@
 html {
-  font-size: 10vw;
+  font-size: 26.666666667vw;
 }
 
 @media screen and (max-width: 320px) {
@@ -20,8 +20,8 @@ html, body {
 }
 
 .flex-button {
-  width: 1rem;
-  height: 20vh;
+  width: .1rem;
+  height: .1rem;
 }
 
 .color-span {
