@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>算法</title>
+  <link rel="stylesheet" type="text/css" href="./style.css">
+</head>
+<body>
+  <div>
+    <input id="enter" type="text" value="2,6,5,4,3,11,3,3,3">
+  </div>
+
+  <script type="text/javascript">
+    let list = document.getElementById('enter').value.split(',')
+    console.log(list)
+
+    let quickSort = (array) => {
+      let len = array.length
+      if (len <= 1) {
+        return array
+      }
+
+      let pos = Math.floor(len / 2)
+      let it = +array.splice(pos, 1)[0]
+
+      let left = []
+      let right = []
+      for (let i = 0; i < len - 1; i++) {
+        let tmp = +array[i]
+        if (tmp < it) {
+          left.push(tmp)
+        } else {
+          right.push(tmp)
+        }
+      }
+
+      return quickSort(left).concat([it]).concat(quickSort(right))
+    }
+
+    let result = quickSort(list)
+    console.log(result)
+  </script>
+</body>
+</html>
