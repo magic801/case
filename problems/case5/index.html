@@ -7,8 +7,8 @@
   <script src="../../node_modules/html2canvas/dist/html2canvas.js"></script>
 </head>
 <body>
-  <div>
-    <canvas id="cs"></canvas>
+  <div class="container-hack">
+    <canvas id="cs" height="640" width="360"></canvas>
   </div>
 
   <div id="app" style="display: none">
@@ -17,22 +17,84 @@
   </div>
 
   <script type="text/javascript">
-    let fixxs = document.getElementById('cs')
-    let ctx = fixxs.getContext('2d')
-    let img = new Image()
-    img.setAttribute('crossOrigin', 'anonymous')
-    // img.src = './images/1.png'
-    // img.src = 'http://static-d.iqiyi.com/paopaoh5act/wageslave/result/20190220/page-results-img-2.jpg'
-    img.src = 'http://localhost:8080/'
-    img.onload = () => {
-      ctx.drawImage(img, 0, 0)
-      // fixxs.toDataURL('image/png')
+    let cs = document.getElementById('cs')
+    let ctx = cs.getContext('2d')
+
+    let testToDataUrl = () => {
+      let img = new Image()
+      img.setAttribute('crossOrigin', 'anonymous')
+      // img.src = './images/1.png'
+      img.src = 'http://static-d.iqiyi.com/paopaoh5act/wageslave/result/20190220/page-results-img-2.jpg'
+      // img.src = 'http://localhost:8080/'
+      img.onload = () => {
+        ctx.drawImage(img, 0, 0)
+        // fixxs.toDataURL('image/png')
+      }
+
+      // html2canvas(document.getElementById('app'), (canvas) => {
+      //   canvas.toDataURL()
+      // })
     }
 
-    // html2canvas(document.getElementById('app'), (canvas) => {
-    //   canvas.toDataURL()
-    // })
+    let drawHacker = () => {
+      let w = cs.width
+      let h = cs.height
+      let ylist = Array(300).join(0).split('')
+      ylist.forEach((item, index) => {
+        ylist[index] = Math.random() * 200 - 200
+      })
+
+      ctx.fillStyle = 'rgba(0,0,0,1)'
+      ctx.fillRect(0, 0, w, h)
+
+      let dr = () => {
+        ctx.fillStyle = 'rgba(0,0,0,.05)'
+        ctx.fillRect(0, 0, w, h)
+        ctx.fillStyle = 'red'
+        ctx.font = '10pt Georgia'
+
+        ylist.map((y, index) => {
+          let text = String.fromCharCode(1e2 + Math.random() * 33)
+          let x = index * 10
+          ctx.fillText(text, x, y)
+
+          if (y > Math.random() * 1e4) {
+            ylist[index] = 0
+          } else {
+            ylist[index] = +y + 10
+          }
+        })
+      }
+
+      setInterval(dr, 100)
+    }
+
+    drawHacker()
     
+    var width = cs.width;
+    var height = cs.height;
+    var yPositions = Array(300).join(0).split('');
+    var draw = function() {
+        ctx.fillStyle = 'rgba(0,0,0,.05)';
+        ctx.fillRect(0, 0, width, height);
+        ctx.fillStyle = 'red';
+        ctx.font = '10pt Georgia';
+        yPositions.map(function(y, index) {
+            text = String.fromCharCode(1e2 + Math.random() * 33);
+            x = (index * 10) + 10;
+            ctx.fillText(text, x, y);
+            if(y > Math.random() * 1e4) {
+                yPositions[index] = 0;
+            } else {
+                yPositions[index] = y + 10;
+            }
+        });
+    };
+    // RunMatrix();
+
+    function RunMatrix() {
+        Game_Interval = setInterval(draw, 100);
+    }
   </script>
 </body>
 </html>
