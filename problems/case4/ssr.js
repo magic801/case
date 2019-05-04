@@ -7,7 +7,7 @@ const renderer = require('vue-server-renderer').createRenderer({
 
 server.get('*', (req, res) => {
   const context = {
-    title: 'hah,2333'
+    title: '<script>alert(333)</script>'
   }
   const app = new Vue({
     template: `<div>Hello aj</div>`

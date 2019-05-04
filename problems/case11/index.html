@@ -39,6 +39,48 @@
 
     let result = quickSort(list)
     console.log(result)
+
+    let labelLoop = () => {
+      let a = 0
+      loop:
+      for (let i=0; i<10; i++) {
+        for (let j=0; j<10; j++) {
+          a++
+          if (j === 5) {
+            break loop;
+          }
+        }
+      }
+      console.log(a)
+    }
+
+    let testConsole = () => {
+      let list = [{
+        name: 'ahah',
+        desc: 'like'
+      }, {
+        name: 'ahah3',
+        desc: 'lik2'
+      }, {
+        name: 'ah2ah',
+        desc: 'li5e'
+      }]
+
+      console.table(list)
+    }
+
+    let testEqual = () => {
+      let a = {
+        i: 1,
+        valueOf: function () {
+          return this.i++
+        }
+      }
+
+      if (a == 1 && a == 2 && a == 3) {
+        console.log('done.')
+      }
+    }
   </script>
 </body>
 </html>
