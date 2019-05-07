@@ -7,33 +7,32 @@
   <script src="../../node_modules/html2canvas/dist/html2canvas.js"></script>
 </head>
 <body>
-  <div class="container-hack">
+  <div class="container-hack" style="display: none">
     <canvas id="cs" height="640" width="360"></canvas>
   </div>
 
-  <div id="app" style="display: none">
+  <div id="app">
     <p>html2canvas</p>
-    <img src="http://static-d.iqiyi.com/paopaoh5act/wageslave/result/20190220/page-results-img-2.jpg" />
+    <img style="height: 1.3rem; width: 2.6rem;" src="http://m.iqiyipic.com/common/lego/20190507/c2105719a5e845e2b69b8bebaebaa5d5.jpg" />
+    <div style="background-image: url(http://m.iqiyipic.com/common/lego/20190507/c2105719a5e845e2b69b8bebaebaa5d5.jpg); height: 1.3rem; width: 2.6rem;background-size: contain; "></div>
   </div>
 
   <script type="text/javascript">
-    let cs = document.getElementById('cs')
-    let ctx = cs.getContext('2d')
+    // let cs = document.getElementById('cs')
+    // let ctx = cs.getContext('2d')
 
     let testToDataUrl = () => {
-      let img = new Image()
-      img.setAttribute('crossOrigin', 'anonymous')
-      // img.src = './images/1.png'
-      img.src = 'http://static-d.iqiyi.com/paopaoh5act/wageslave/result/20190220/page-results-img-2.jpg'
-      // img.src = 'http://localhost:8080/'
-      img.onload = () => {
-        ctx.drawImage(img, 0, 0)
-        // fixxs.toDataURL('image/png')
-      }
+      // let img = new Image()
+      // img.setAttribute('crossOrigin', 'anonymous')
+      // // img.src = './images/1.png'
+      // img.src = 'http://static-d.iqiyi.com/paopaoh5act/wageslave/result/20190220/page-results-img-2.jpg'
+      // img.onload = () => {
+      //   ctx.drawImage(img, 0, 0)
+      // }
 
-      // html2canvas(document.getElementById('app'), (canvas) => {
-      //   canvas.toDataURL()
-      // })
+      html2canvas(document.getElementById('app'), (canvas) => {
+        canvas.toDataURL()
+      })
     }
 
     let drawHacker = () => {
@@ -69,7 +68,7 @@
       setInterval(dr, 100)
     }
 
-    drawHacker()
+    // drawHacker()
     
     var width = cs.width;
     var height = cs.height;

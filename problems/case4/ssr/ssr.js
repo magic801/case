@@ -7,7 +7,8 @@ const renderer = require('vue-server-renderer').createRenderer({
 
 server.get('*', (req, res) => {
   const context = {
-    title: '<script>alert(333)</script>'
+    title: 'hah,2333',
+    content: '< >;j:::,vi'
   }
   const app = new Vue({
     template: `<div>Hello aj</div>`
@@ -20,4 +21,7 @@ server.get('*', (req, res) => {
   
 })
 
-server.listen(8080)
+
+let port = 8080
+console.log(`listen::   ${port}`)
+server.listen(port)

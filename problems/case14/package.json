@@ -1,0 +1,27 @@
+{
+  "name": "case14",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "bc": "webpack --config webpack.client.config.js --mode=development",
+    "bs": "webpack --config webpack.server.config.js --mode=development",
+    "server": "node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "express": "^4.16.4",
+    "html-webpack-plugin": "^3.2.0",
+    "vue": "^2.6.10",
+    "vue-loader": "^15.7.0",
+    "vue-router": "^3.0.6",
+    "vue-server-renderer": "^2.6.10",
+    "vue-ssr-webpack-plugin": "^3.0.0",
+    "vue-template-compiler": "^2.6.10",
+    "webpack-cli": "^3.3.2"
+  },
+  "dependencies": {
+    "webpack": "^4.30.0"
+  }
+}
