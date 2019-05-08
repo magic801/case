@@ -6,7 +6,9 @@
   "scripts": {
     "bc": "webpack --config build/webpack.client.config.js",
     "bs": "webpack --config build/webpack.server.config.js",
-    "server": "node server.js"
+    "server": "node server.js",
+    "auto": "webpack --config build/webpack.client.config.js && webpack --config build/webpack.server.config.js && node server.js",
+    "test": "node test/test.js"
   },
   "author": "",
   "license": "ISC",
