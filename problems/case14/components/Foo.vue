@@ -1,13 +1,21 @@
 <template>
   <div>
-    <p>hha</p>
+    <p>{{ $store.state.name }}</p>
   </div>
 </template>
 
 <script>
 export default {
-  created() {
-    console.log('foo created');
+  asyncData ({ store }) {
+    return store.dispatch('getInfo')
+  },
+
+  created () {
+    console.log('foo created')
+  },
+
+  mounted () {
+    console.log('foo mounted')
   }
 }
 </script>
