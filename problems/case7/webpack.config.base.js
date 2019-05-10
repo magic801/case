@@ -3,13 +3,14 @@ let HtmlWebpackPlugin = require('html-webpack-plugin')
 let HelloWorldPlugin = require('./plugins/helloworld.js')
 
 module.exports = {
-  entry: [
-    './app/main.js'
-  ],
+  entry: {
+    main: path.join(__dirname, './app/main.js'),
+    m1: path.join(__dirname, './app/main1.js')
+  },
 
   output: {
     path: path.resolve(__dirname, "./dist"),
-    filename: "bundle.js"
+    filename: "[name].js"
   },
 
   module: {
