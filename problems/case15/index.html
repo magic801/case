@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>polifill</title>
+</head>
+<body>
+  <script type="text/javascript">
+    function test () {
+      const promiseValueBz = 'promiseValueBz'
+      const promiseStatusBz = 'promiseStatusBz'
+      const STATUS = {
+        PENDING: 'PENDING',
+        FULFILLED: 'FULFILLED',
+        REJECTED: 'REJECTED'
+      }
+
+      function setStatus (status) {
+        this.promiseStatusBz = status
+        if (status === STATUS.FULFILLED) {
+          this.deps.resolver && this.deps.resolver()
+        }
+      }
+
+      function doResolve (status) {
+        return (val) => {
+          this.promiseValueBz = val
+          setStatus.call(this, status)
+        }
+      }
+
+      function doReject () {}
+
+      function Pro (fn) {
+        this.promiseStatusBz = STATUS.PENDING
+        this.deps = {}
+
+        fn(doResolve.call(this, STATUS.FULFILLED), (er) => {
+          this.er = er
+        })
+      }
+
+      const promise = new Pro((resolve, reject) => {
+        setTimeout(() => {
+          console.log('in setTimeout')
+          resolve('shuai ge')
+        }, 200)
+      })
+
+      Pro.prototype.then = function (onFullfilled, onRejected) {
+        let self = this
+        return new Pro(function (resolve, reject) {
+          const fullCB = () => {
+            const val = onFullfilled(self.promiseValueBz)
+            resolve(val)
+          }
+
+          switch (self.promiseStatusBz) {
+            case STATUS.FULFILLED:
+              fullCB()
+              break;
+            case STATUS.REJECTED:
+
+              break;
+            default:
+              self.deps.resolver = fullCB
+              break;
+          }
+        })
+      }
+
+      promise.then((data) => {
+        console.log(`in then1, data: ${data}`)
+        return 'then1 return'
+      }).then((data) => {
+        console.log(`in then2, data: ${data}`)
+      })
+    }
+  </script>
+</body>
+</html>
