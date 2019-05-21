@@ -7,8 +7,22 @@
 <body>
   <div id="test">hahah</div>
   <script type="text/javascript" src="./yyy.js"></script>
+  <script type="text/javascript" src="./event.js"></script>
   <script type="text/javascript">
-    
+    let eventer = new Event()
+
+    eventer.on('hello', (data) => {
+      console.log(data)
+    })
+
+    // eventer.off('hello')
+
+    eventer.once('hello', (data) => {
+      console.log(`once:  ${data}`)
+    })
+
+    eventer.trigger('hello', 'hapy.')
+    eventer.trigger('hello', 'hapy.')
   </script>
 </body>
 </html>
