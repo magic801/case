@@ -224,29 +224,29 @@
       console.log(l2)
     }
 
-
-    let list01 = [{
-      n: 'a',
-      w: 2,
-      v: 3
-    },{
-      n: 'b',
-      w: 3,
-      v: 4
-    },{
-      n: 'c',
-      w: 4,
-      v: 5
-    },{
-      n: 'd',
-      w: 3,
-      v: 3
-    },{
-      n: 'e',
-      w: 4,
-      v: 2
-    }]
     let pick01 = (weight = 6) => {
+      let list01 = [{
+        n: 'a',
+        w: 2,
+        v: 3
+      },{
+        n: 'b',
+        w: 3,
+        v: 4
+      },{
+        n: 'c',
+        w: 4,
+        v: 5
+      },{
+        n: 'd',
+        w: 3,
+        v: 3
+      },{
+        n: 'e',
+        w: 4,
+        v: 2
+      }]
+
       let len = list01.length
       let obj = new Array(len)
       for (let i=0; i<len; i++) {
@@ -283,6 +283,63 @@
       }
 
       console.table(obj)
+    }
+
+    let zjyo = () => {
+      let list = [1,2,3,4,5,6,7,8]
+
+      let left = 0, right = list.length - 1
+
+      while (left < right) {
+        if (isOS(list[left])) {
+          if (isJS(list[right])) {
+            swap(left, right)
+            left++
+          }
+          right--
+        } else if (isJS(list[right])) {
+          if (isOS(list[left])) {
+            swap(left, right)
+            right--
+          }
+          left++
+        } else {
+          left++
+          right--
+        }
+      }
+
+      function isJS (num) {
+        return num % 2 === 1
+      }
+
+      function isOS (num) {
+        return num % 2 === 0
+      }
+
+      function swap (l, r) {
+        let tmp = list[l]
+        list[l] = list[r]
+        list[r] = tmp
+      }
+
+      console.log(list)
+    }
+
+    // ran5 (1-5) => ran7 (1-7)
+    let ran7 = () => {
+      let j0_1 = () => {
+        let num = ran5()
+        while (num > 4) {
+          num = ran5()
+        }
+        return num % 2
+      }
+
+      let j0_7 = () => {
+        let num = j0_1()
+        return j0_1()<<2 + j0_1()<<1 + j0_1()
+      }
     }
   </script>
 </body>
