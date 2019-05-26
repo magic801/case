@@ -33,3 +33,72 @@ function add(x) {
 	}
 	return tmp
 }
+
+
+let count = 0
+let limit = 2
+let cacheList = []
+
+function schedule (fn) {
+	new Promise((resolve, reject) => {
+		let task = ctask(fn, resolve, reject)
+		if (count >= limit) {
+			cacheList.push(task)
+			console.log(`push cacheList.`)
+		} else {
+			count++
+			task()
+		}
+	})
+}
+
+function ctask (fn, resolve, reject) {
+	return function () {
+		console.log('excute task.')
+		fn.call(this).then((data) => {
+			console.log(`done ${data}`)
+		}, (er) => {
+			console.log(`error ${er}`)
+		}).then(() => {
+			console.log(`finally ${count}`)
+			count--
+			let task = cacheList.shift()
+			if (task) {
+				task()
+				count++
+			}
+		})
+	}
+}
+
+function testSchedule () {
+	let t1 = () => {
+		return deferDo(1000).then(() => {
+			return 't1 done'
+		})
+	}
+
+	let t2 = () => {
+		return deferDo(500).then(() => {
+			return 't2 done'
+		})
+	}
+
+	let t3 = () => {
+		return deferDo(400).then(() => {
+			return 't3 done'
+		})
+	}
+
+	schedule(t1)
+	schedule(t2)
+	schedule(t3)
+}
+
+function deferDo (time = 200) {
+	return new Promise((resolve, reject) => {
+		setTimeout(() => {
+			resolve()
+		}, time)
+	})
+}
