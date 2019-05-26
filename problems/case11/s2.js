@@ -34,7 +34,7 @@ function add(x) {
 	return tmp
 }
 
-
+// 异步调度
 let count = 0
 let limit = 2
 let cacheList = []
@@ -101,4 +101,44 @@ function deferDo (time = 200) {
 			resolve()
 		}, time)
 	})
+}
+
+
+// 一个数组，只有1个数为一个，其余都是2个
+function searchOnly (list = []) {
+	for (let i=1,len=list.length; i<len; i++) {
+		list[0] ^= list[i]
+	}
+	return list[0]
+}
+
+
+// 找最大子序列
+function searchMaxZXL (str) {
+	let r1 = str[0]
+
+	for (let i=1; i<str.length; i++) {
+		if (str[i] > str[i-1]) {
+			r1 += str[i]
+		} else {
+			r1 += str[i-1]
+		}
+	}
+
+	let max = str[0]
+	let pos = 0
+	for (let i=1; i<str.length; i++) {
+		if (str[i] > str[pos]) {
+			pos = i
+			max = str[i]
+		}
+	}
+
+	for (let i=pos; i<str.length; i++) {
+		if (str[i] === r1[i]) {
+			result += str[i]
+		}
+	}
+
+	return result
 }
