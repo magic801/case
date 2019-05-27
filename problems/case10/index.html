@@ -6,43 +6,13 @@
   <link rel="stylesheet" type="text/css" href="./style.css">
 </head>
 <body>
-  <div>
-    <input id="btn" type="button" value="click">
+  <div class="container">
+    <li class="li-item" style="left: 0vw">page1</li>
+    <li class="li-item" style="left: 10vw">page2</li>
+    <li class="li-item" style="left: 20vw">page3</li>
   </div>
-
-  <video style="width: 3rem" muted></video>
-
-<!--   <div style="display: flex;">
-    <div>flex1</div>
-  </div> -->
-
-  <div class="box">
-    <span>1</span>
-    <span>1</span>
-  </div>
-
   <script type="text/javascript">
-    let player = document.querySelector('video')
-    let m3u = "http://124.193.0.135//videos//v1//20190417//38//a8//10c9f87f9ea379cbe950d4e5837c9cf3.mp4?key=09eeae826f08b7dfdb764eab2b8400e7e&dis_k=2c76fb192342c35b72472fb425c5801be&dis_t=1555744236&dis_dz=GWBN-BeiJing&dis_st=40&src=iqiyi.com&uuid=0a0a0d9f-5cbac5ec-1bb&m=v&qd_k=ef297b2821c963bfa591c87bc3d32701&sgti=13_ziwbfqjodowjduk0jyanena_1555744212559&qd_ip=73233884&qd_p=73233884&dfp=e1be2c818af64c4235849a27bf44bffe27cd2e26db66877dbef21a4a998220eff7&qd_src=02020031010000000000&ssl=&ip=115.35.56.132&qd_vip=1&dis_src=vrs&qd_uid=1204484278&qdv=1&qd_tm=1555744236966"
 
-    let deferDo = (time = 1000) => {
-      return new Promise((resolve, reject) => {
-        setTimeout(() => {
-          resolve()
-        }, time)
-      })
-    }
-
-    document.getElementById('btn').addEventListener('click', () => {
-      deferDo().then(() => {
-        player.src = m3u
-        return player.play()
-      }).then(() => {
-        console.log('done.')
-      }).catch(() => {
-        console.log('fail.')
-      })
-    })
   </script>
 </body>
 </html>

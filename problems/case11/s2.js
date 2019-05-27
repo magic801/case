@@ -115,27 +115,22 @@ function searchOnly (list = []) {
 
 // 找最大子序列
 function searchMaxZXL (str) {
-	let r1 = str[0]
+	if (str.length <= 1) {
+		return str
+	}
 
-	for (let i=1; i<str.length; i++) {
-		if (str[i] > str[i-1]) {
-			r1 += str[i]
+	let rightMaxStr = ''
+	for (let i=str.length-1; i>=0; i--) {
+		if (rightMaxStr[0] > str[i]) {
+			rightMaxStr = rightMaxStr[0] + rightMaxStr
 		} else {
-			r1 += str[i-1]
+			rightMaxStr = str[i] + rightMaxStr
 		}
 	}
 
-	let max = str[0]
-	let pos = 0
-	for (let i=1; i<str.length; i++) {
-		if (str[i] > str[pos]) {
-			pos = i
-			max = str[i]
-		}
-	}
-
-	for (let i=pos; i<str.length; i++) {
-		if (str[i] === r1[i]) {
+	let result = ''
+	for (let i=0; i<str.length; i++) {
+		if (str[i] === rightMaxStr[i]) {
 			result += str[i]
 		}
 	}
