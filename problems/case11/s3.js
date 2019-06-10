@@ -84,3 +84,27 @@ let person = {
 }
 
 // cname.demonApply(person, {length: 10})
+
+// 约瑟夫问题
+let ysf = (total, num) => {
+    let list = []
+    for (let i=0; i<total; i++) {
+        list.push({
+            val: i+1,
+            flag: false
+        })
+    }
+
+    let count = 0;
+    let pos = 1
+
+    while (total > 1) {
+        let tmp = list[count]
+        if (!tmp.flag) {
+            tmp.flag = true
+            pos = ((pos+1) % 4) + 1
+            total--
+        }
+        count = (count++) % list.length
+    }
+}
