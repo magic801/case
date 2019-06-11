@@ -1,0 +1,50 @@
+.letter-a {
+    position: relative;
+    width: 30px;
+    height: 40px;
+    background: white;
+    border-radius: 10px 10px 0 0;
+    border-style: solid;
+    border-color: currentColor currentColor transparent currentColor;
+    border-width: 10px 10px 0 10px;
+}
+.letter-a::before {
+    content: "";
+    position: absolute;
+    top: 10px;
+    height: 10px;
+    width: 30px;
+    background: currentColor;
+}
+
+.letter-b {
+    position: relative;
+    width: 30px;
+    height: 30px;
+    border-width: 10px 10px 10px  10px;
+    border-style: solid;
+    border-color: transparent transparent transparent currentColor;
+    background: transparent;
+}
+.letter-b::before {
+    content: "";
+    position: absolute;
+    left: -10px;
+    top: -10px;
+    height: 10px;
+    width: 30px;
+    background: transparent;
+    border-radius: 0 12.5px 12.5px 0;
+    border: 10px solid currentColor;
+}
+.letter-b::after {
+    content: "";
+    position: absolute;
+    left: -10px;
+    bottom: -10px;
+    height: 10px;
+    width: 30px;
+    background: transparent;
+    border-radius: 0 12.5px 12.5px 0;
+    border: 10px solid currentColor;
+}
