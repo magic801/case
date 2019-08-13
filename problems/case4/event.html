@@ -5,6 +5,15 @@
   <title>vue</title>
   <link rel="stylesheet" type="text/css" href="./style.css">
   <script src="./node_modules/vue/dist/vue.js"></script>
+  <script type="text/javascript">
+    document.addEventListener('DOMNodeInserted', (e) => {
+      let node = e.target;
+      if (node.id === 'app') {
+        console.log('app insereted.')
+      }
+      console.log(node)
+    })
+  </script>
 </head>
 <body>
   <div id="app">
@@ -61,6 +70,16 @@
         console.log(`updated  ${this.$el}  ${this.message}`)
         console.log(this.$el)
       }
+    })
+  </script>
+
+  <script type="text/javascript">
+    document.addEventListener('DOMNodeInserted', (e) => {
+      let node = e.target;
+      if (node.id === 'app') {
+        console.log('app insereted.  1111111')
+      }
+      console.log(node)
     })
   </script>
 </body>
