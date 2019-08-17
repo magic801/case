@@ -2,12 +2,20 @@
 <html>
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src https://static.iqiyi.com">
   <title>nb</title>
 </head>
 <body>
+  <div style="background:red; width:180px; padding:10px;">
+    <div id="out"></div>
+    <input type="text">
+  </div>
   <div id="test">hahah</div>
+  <input type="button" id="btn" value="click me." />
   <script type="text/javascript" src="./yyy.js"></script>
   <script type="text/javascript" src="./event.js"></script>
+  <script type="text/javascript" src="./console.js"></script>
+  <script type="text/javascript" src="https://static.iqiyi.com/js/html5/js/app/js/chunk-vendors.1b0e45c1.js"></script>
   <script type="text/javascript">
     let eventer = new Event()
 
