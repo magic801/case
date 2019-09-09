@@ -1,6 +1,7 @@
-var path = require("path")
-let HtmlWebpackPlugin = require('html-webpack-plugin')
-let HelloWorldPlugin = require('./plugins/helloworld.js')
+let path = require("path")
+
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const HelloWorldPlugin = require('./plugins/helloworld.js')
 
 module.exports = {
   entry: {
@@ -10,13 +11,22 @@ module.exports = {
 
   output: {
     path: path.resolve(__dirname, "./dist"),
-    filename: "[name].js"
+    filename: "[name].[hash:4].js"
   },
 
   module: {
     rules: [{
       test: /\.css$/,
-      use: ['style-loader', 'css-loader']
+      use: [{
+        loader: 'style-loader'
+      }, {
+        loader: 'css-loader'
+      }, {
+        loader: path.join(__dirname, './loaders/color-loader'),
+        options: {
+          style: path.join(__dirname, './special/cop-a.css')
+        }
+      }]
     }, {
       test: /\.(png|jpg)$/,
       use: ['url-loader']
