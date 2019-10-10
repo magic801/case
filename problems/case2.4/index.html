@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>react.</title>
+  <script src="http://cdn.staticfile.org/react/16.4.0/umd/react.development.js"></script>
+  <script src="http://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
+  <script src="http://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+</head>
+<body>
+
+  <div id="example"></div>
+
+  <script type="text/babel">
+    class NotesList extends React.Component{
+      render () {
+        return (
+          <ol>
+          {
+            React.Children.map(this.props.children, function (child) {
+              return <li>{child}</li>;
+            })
+          }
+          </ol>
+        );
+      }
+    };
+
+    ReactDOM.render(
+      <NotesList>
+        <span>hello</span>
+        <span>world</span>
+      </NotesList>,
+      document.getElementById('example')
+    );
+  </script>
+
+</body>
+</html>
