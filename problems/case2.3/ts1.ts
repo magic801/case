@@ -5,31 +5,52 @@ enum Color {
   Green
 }
 
+let a = identity([Color.Red])
+
+console.log(a)
+
+let nae: string | number = String('tom')
+nae.split('')
+// nae = 3
+nae.length
+
+let uns: void = undefined
+
+let ssd: any = undefined
+ssd.join1()
+
+let nul
+nul = 3
+nul = 's'
+
 interface Person {
-  firstName: string
-  lastName: string
-  color: Color
+  name: string,
+  age?: number,
+  [s1: string]: string | number
 }
 
-function sayGreet (person: Person) {
-    return `hello, ${person.firstName} ${person.lastName}`
+let tom: Person = {
+  name: 'dss',
+  like: 'as'
 }
 
-let user = {
-  firstName: 'w',
-  lastName: 'mm',
-  color: Color.Green,
-  ha: 3
+let al: number[] = [1,2,3]
+let bl: Array<number> = [3,3,3,3]
+
+
+interface StringArray {
+  [index: number]: string
 }
 
+let fiboans: StringArray = ['1','2','3']
 
-let obj = {
-  a: 3,
-  b: 5,
-  c: 9
+let xx = function (x: number, y: number): number {
+  return x + y
 }
 
-let {a, ...other} = obj
+xx(2, 3)
 
-let zv = new Validation.ZipCodeValidator()
-console.log(zv.isAcceptable('nihao.'))
+function gets (something: string | number): number {
+  // return (<string>something).length
+  return (something as string).length
+}
