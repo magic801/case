@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>easeljs</title>
+  <script src="./lib/easeljs.js"></script>
+</head>
+<body>
+  <canvas id="mycan"></canvas>
+  <script>
+    let canvas = document.getElementById('mycan')
+    let stage = new createjs.Stage(canvas)
+
+    let rect = new createjs.Shape()
+    rect.graphics.beginFill('#f00').drawRect(0,0,100,100)
+    stage.addChild(rect)
+    stage.update()
+
+    rect.addEventListener('click', () => {
+      rect.x += 4
+      rect.y += 7
+      // rect.graphics.beginFill('#f00').drawRect(4,4,100,100)
+      stage.update()
+    })
+  </script>
+</body>
+</html>

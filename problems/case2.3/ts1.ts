@@ -54,3 +54,35 @@ function gets (something: string | number): number {
   // return (<string>something).length
   return (something as string).length
 }
+
+type nn = number | string
+
+function tst (a: nn) {
+  console.log(a)
+}
+
+tst('ddd')
+
+let tom2: [string, number]
+tom2 = ['d', 2]
+console.log(tom2)
+tom2.push(3)
+
+enum Days {Sun, Mon, Tue, Wed, Thu, Fri}
+const enum CDays {Sun, Mon, Tue, Wed, Thu, Fri}
+
+console.log(CDays.Mon)
+
+class Assp {
+  public name
+  private age
+
+  constructor(name, age) {
+    this.name = name
+    this.age = age
+  }
+}
+
+let assp = new Assp('as', 13)
+assp.age
+assp.name

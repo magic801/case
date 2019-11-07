@@ -49,3 +49,7 @@
 ## 2.4 react
 
 ## 2.5 正则
+
+## 2.6 easeljs
+
+## 2.7 canvas
