@@ -3,25 +3,22 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>easeljs</title>
+  <style type="text/css">
+    html, body {
+      height: 100%;
+      width: 100%;
+      padding: 0;
+      margin: 0;
+    }
+
+    canvas {
+      border: 1px solid red;
+    }
+  </style>
   <script src="./lib/easeljs.js"></script>
 </head>
 <body>
-  <canvas id="mycan"></canvas>
-  <script>
-    let canvas = document.getElementById('mycan')
-    let stage = new createjs.Stage(canvas)
-
-    let rect = new createjs.Shape()
-    rect.graphics.beginFill('#f00').drawRect(0,0,100,100)
-    stage.addChild(rect)
-    stage.update()
-
-    rect.addEventListener('click', () => {
-      rect.x += 4
-      rect.y += 7
-      // rect.graphics.beginFill('#f00').drawRect(4,4,100,100)
-      stage.update()
-    })
-  </script>
+  <canvas id="mycan" width="300" height="300"></canvas>
+  <script src="./telj.js"></script>
 </body>
 </html>
