@@ -25,10 +25,18 @@ createjs.Ticker.addEventListener('tick', () => {
 
 rect.on('mousedown', (e) => {
   stage.rotate = !stage.rotate
-})
+  console.log('mousedown')
+}, true)
 
 stage.on('stagemousemove', (e) => {
   rect.x = e.stageX
   rect.y = e.stageY
   stage.update()
 })
+
+stage.on('stagemousedown', (e) => {
+  // rect.x = e.stageX
+  // rect.y = e.stageY
+  // stage.update()
+  console.log('stagemousedown')
+}, true)

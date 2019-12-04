@@ -53,3 +53,7 @@
 ## 2.6 easeljs
 
 ## 2.7 canvas
+
+## 2.8 transition
+
+## 2.9 animejs
