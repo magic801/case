@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <title>dagre-d3.</title>
+  <script src="../d3.min.js"></script>
+  <script src="../dagre-d3.js"></script>
+
+  <style id="css">
+    g.type-current>rect {
+      fill: #1E9FFF;
+    }
+
+    g.type-success>rect {
+      fill: green;
+    }
+
+    g.type-fail>rect {
+      fill: red;
+    }
+
+    text {
+      font-weight: 300;
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serf;
+      font-size: 14px;
+    }
+
+    .node rect {
+      stroke: #999;
+      fill: #fff;
+      stroke-width: 1.5px;
+    }
+
+    .edgePath path {
+      stroke: #333;
+      stroke-width: 1.5px;
+    }
+	</style>
+</head>
+<body>
+	<svg id="svg-canvas" width=700 height=300 />
+	<script src="./test.js"></script>
+</body>
+</html>
