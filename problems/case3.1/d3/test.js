@@ -1,194 +1,161 @@
-let width = 400, height = 400
-let svg = d3.select('body')
-  .append('svg')
-  .attr('height', height)
-  .attr('width', width)
-let gg = svg.append('g').attr('transform', 'translate(60, 60)')
+let width = document.body.clientWidth, height = document.body.clientHeight
+let demon = d3.select('#demon')
+let svg = demon
+    .append('svg')
+    .attr('height', height)
+    .attr('width', width)
+let tabCon = d3.select('#tabs')
 
 var colorScale = d3.scaleOrdinal()
   .domain(d3.range(5))
   .range(d3.schemeCategory10)
 
-let demo1 = () => {
-  let list = [2, 4, 6, 5.5, 7]
+let tabs = {}
+let currIndex = 1
 
-  d3.select('body')
-    .selectAll('p')
-    .data(list)
-    .text((d) => {
-      return d
-    })
-
-  let linear = d3.scaleLinear()
-    .domain([0, d3.max(list)])
-    .range([0, 300])
-
-  let axis = d3.axisBottom().scale(linear).ticks(7)
-
-  let svg = d3.select('body')
-    .append('svg')
-    .attr('height', 300)
-    .attr('width', 300)
-
-  svg
-    .selectAll('rect')
-    .data(list)
-    .enter()
-    .append('rect')
-    .attr('x', 10)
-    .attr('y', (d, i) => {
-      return i * 25 + i * 5
-    })
-    .attr('height', 25)
-    .attr('width', (d) => {
-      return linear(d)
-    })
-    .attr('fill', 'steelblue')
-
-  svg
-    .append('g')
-    .attr('class', 'axis')
-    .attr("transform","translate(20,150)")
-    .call(axis)
-
-  let circle = svg.append('circle')
-    .attr('cx', 100)
-    .attr('cy', 220)
-    .attr('r', 45)
-    .style('fill', 'green')
-
-  // circle.transition()
-  //   .duration(2000)
-  //   .ease(d3.easeBounceIn)
-  //   .style('fill', 'red')
-  //   .attr('r', 20)
-  //   .attr('cx', 160)
-
-  circle.on('click', (d, i) => {
-    console.log('click')
-    console.log(`${d}  ${i}`)
-  }).on('mouseover', () => {
-    circle
-      .transition()
-      .duration(500)
-      .style('fill', 'red')
-  }).on('mouseout', () => {
-    circle
-      .transition()
-      .duration(500)
-      .style('fill', 'green')
-  })
+let removeTabAndTable = () => {
+  let id = `tab${currIndex}`
+  if (tabs[id]) {
+    let i = currIndex
+    while (tabs[`tab${i}`]) {
+      tabs[`tab${i}`].title.remove()
+      tabs[`tab${i}`].content.remove()
+      i++
+    }
+  }
 }
 
-let demo2 = () => {
-  let gg = svg
-    .append('g')
-    .attr("transform","translate("+60+","+60+")")
-    
-  let list = [1, 2, 3, 4, 5]
-
-  let colorScale = d3.scaleOrdinal()
-    .domain(d3.range(list.length))
-    .range(d3.schemeCategory10)
-
-  let pie = d3.pie()
-  let pieData = pie(list)
-  let arc = d3.arc().innerRadius(0).outerRadius(100)
-
-  let gs = gg
-    .selectAll('g')
-    .data(pieData)
-    .enter()
-    .append('g')
-    .attr("transform","translate("+300/2+","+300/2+")")
-
-  gs.append('path')
-    .attr('d', (d) => {
-      return arc(d)
-    })
-    .attr('fill', (d, i) => {
-      return colorScale(i)
-    })
-}
-
-let demo3 = () => {
-  let nodes = [
-    { name: '上海' },
-    { name: '天津' },
-    { name: '大连' },
-    { name: '北京' },
-    { name: '武汉' },
-  ]
-
-  let edges = [
-    { source: 0, target: 3},
-    { source: 2, target: 3},
-    { source: 3, target: 1}
-  ]
-
-  let forceSimulateion = d3.forceSimulation()
+let draw = (table, nodes, edges) => {
+  let forceSimulateion = d3.forceSimulation(nodes)
     .force('link', d3.forceLink())
     .force('charge', d3.forceManyBody())
-    .force('center', d3.forceCenter())
+    .force('center', d3.forceCenter(width / 2, height / 2))
+    .on('tick', ticked)
+    .stop()
 
-  forceSimulateion.nodes(nodes).on("tick",ticked)
+  // forceSimulateion
   forceSimulateion.force('link')
     .links(edges)
     .distance(() => {
       return 200
     })
-  forceSimulateion.force('center')
-    .x(width / 2)
-    .y(height / 2)
+    .iterations(10)
 
-  let links = gg.append('g')
-    .selectAll('line')
+  let links = table.append('g')
+    .selectAll('.link')
     .data(edges)
     .enter()
-    .append('line')
-    .attr('stroke', 'black')
-    .attr('stroke-width', 1)
+    .append('path')
+    .attr('class', 'link')
+    .attr('stroke-dasharray', '13 7')
+    .attr('stroke-dashoffset', '5')
+    .attr('stroke', '#217EF25f')
+    // .attr('stroke', "url(#orange_red)")
+    // .attr('stroke-width', "10")
+    // .attr('fill', '#aaa')
 
-  let texts = gg.selectAll('.circleText')
+  let texts = table.selectAll('.d3node')
     .data(nodes)
     .enter()
     .append('g')
     .attr('transform', (d) => {
       return `translate(${d.x}, ${d.y})`
     })
+    .attr('class', 'd3node')
 
-  texts.append('circle')
-    .attr('r', 10)
-    .attr('fill', (d, i) => {
-      return colorScale(i)
-    })
+  texts.append('rect')
+    .attr('width', 6)
+    .attr('height', 10)
+    .attr('y', -10)
+    .style('fill', (d, i) => colorScale(i))
   texts.append('text')
-    .attr('x', -10)
-    .attr('y', -20)
-    .attr('dy', 10)
+    .attr('x', 7)
+    .attr('y', 0)
+    // .attr('dy', 10)
     .text((d) => {
       return d.name
     })
-
-  function ticked() {
-    links
-      .attr("x1",function(d){return d.source.x;})
-      .attr("y1",function(d){return d.source.y;})
-      .attr("x2",function(d){return d.target.x;})
-      .attr("y2",function(d){return d.target.y;});
-      
-    // linksText
-    //   .attr("x", function(d) {
-    //     return (d.source.x+d.target.x)/2;
-    //   })
-    //   .attr("y", function(d) {
-    //     return (d.source.y + d.target.y)/2;
-    //   })
-      
-    texts.attr("transform", function(d) {
-      return "translate(" + d.x + "," + d.y + ")"
+  texts.on('click', (d) => {
+    getInfo(d).then(({ nodes, edges }) => {
+      removeTabAndTable()
+      let tab = addTab()
+      draw(tab, nodes, edges)
     })
+  })
+
+  d3.timeout(() => {
+    for (let i = 0, n = Math.ceil(Math.log(forceSimulateion.alphaMin()) / Math.log(1 - forceSimulateion.alphaDecay()));
+      i < n;
+      i += 1
+    ) {
+      forceSimulateion.tick();
+      ticked();
+    }
+  })
+
+  // let time = 0
+  function ticked() {
+    // if (forceSimulateion.alpha() <= 0.05) {
+      // console.log(time++ + ' times')
+      links
+        .attr('d', d => {
+          // console.log(d)
+          return `M${d.source.x} ${d.source.y} Q ${(d.source.x + d.target.x)/2} ${(d.target.y + d.source.y)/2 - 80} ${d.target.x} ${d.target.y}`
+        })
+        
+      texts.attr("transform", function(d) {
+        return "translate(" + d.x + "," + d.y + ")"
+      })
+    //   forceSimulateion.stop()
+    // }
   }
 }
 
-demo3()
+let hideAllTabButOne = (id) => {
+  for (let k in tabs) {
+    tabs[k].content.attr('class', 'hide')
+  }
+
+  tabs[id].content.attr('class', '')
+}
+
+let addTab = () => {
+  let gg = svg.append('g').attr('transform', 'translate(60, 60)')
+  let id = `tab${currIndex}`
+
+  let group = tabCon.append('g')
+    .attr('dindex', currIndex)
+    .attr('transform', `translate(${45 * currIndex}, 35)`)
+    .on('click', (a, b, c, d) => {
+      hideAllTabButOne(id)
+      currIndex = +c[0].getAttribute('dindex') + 1
+    })
+
+  group
+    .append('circle')
+    .attr('r', 10)
+    .attr('fill', () => {
+      return colorScale(currIndex)
+    })
+
+  group
+    .append('text')
+    .attr('x', -4)
+    .attr('y', 6)
+    .text(currIndex)
+
+  currIndex++
+
+  tabs[id] = {
+    title: group,
+    content: gg
+  }
+  hideAllTabButOne(id)
+
+  return gg
+}
+
+getInfo().then(({ nodes, edges }) => {
+  let tab = addTab()
+  draw(tab, nodes, edges)
+})

@@ -4,25 +4,10 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta charset="UTF-8" />
   <title>dagre-d3.</title>
-  <script src="../d3.min.js"></script>
-  <script src="../dagre-d3.js"></script>
-
-  <style id="css">
-    g.type-current>rect {
-      fill: #1E9FFF;
-    }
-
-    g.type-success>rect {
-      fill: green;
-    }
-
-    g.type-fail>rect {
-      fill: red;
-    }
-
+  <style>
     text {
       font-weight: 300;
-      font-family: "Helvetica Neue", Helvetica, Arial, sans-serf;
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
       font-size: 14px;
     }
 
@@ -32,14 +17,45 @@
       stroke-width: 1.5px;
     }
 
+    g.type-TK > rect {
+      fill: #00ffd0;
+    }
+
     .edgePath path {
       stroke: #333;
       stroke-width: 1.5px;
     }
+
+    .menu {
+      position: fixed;
+      width: 140px;
+      padding: 0;
+      list-style: none;
+      border: 2px solid lightblue;
+      background-color: white;
+    }
+
+    .menu li {
+      margin: 0;
+      padding: 5px;
+      text-align: center;
+      border: 1px solid lightblue;
+    }
+
+    .menu li:hover {
+      cursor: pointer;
+      background-color: lightyellow;
+    }
 	</style>
+
+  <script src="../../../node_modules/vue/dist/vue.js"></script>
+  <script src="../d3.min.js"></script>
+  <script src="../dagre-d3.js"></script>
+  <script src="../d3-breadcrumb.js"></script>
 </head>
 <body>
-	<svg id="svg-canvas" width=700 height=300 />
+  <div id='app'></div>
+
 	<script src="./test.js"></script>
 </body>
 </html>
