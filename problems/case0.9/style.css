@@ -20,11 +20,26 @@ html, body {
 }
 
 .kuang {
+/*  height: 200px;
+  width: 155px;*/
+  display: inline-block;
+}
+
+.htmlimg {
   height: 200px;
   width: 155px;
 }
 
-.htmlimg {
-  height: 100%;
-  width: auto;
+.iimg {
+  width: 100%;
+  height: auto;
+}
+
+.dimg {
+  height: 200px;
+  width: 155px;
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
 }

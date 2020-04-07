@@ -4,35 +4,80 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>html2canvas</title>
   <link rel="stylesheet" type="text/css" href="./style.css">
-  <script src="http://statics-web.iqiyi.com/common/jssdk/iqiyiJsBridge-v2-min.js"></script>
+
   <script src="../../node_modules/html2canvas/dist/html2canvas.js"></script>
 </head>
 <body>
   <div id="app">
-    <div class="kuang">
-      <div class="htmlimg" style="background-image: url(http://static-d.iqiyi.com/paopaoh5/guess/superstar/20190402/345040447.png); background-size: cover;"></div>
+    <div id='tt' class="kuang">
+      <div class="htmlimg">
+        <div class="dimg" style="background-image: url(http://static-d.iqiyi.com/paopaoh5/guess/superstar/20190402/345040447.png); background-size: cover;"></div>
+      </div>
+      <div class="htmlimg">
+        <img class="iimg" src="http://static-d.iqiyi.com/paopaoh5/guess/superstar/20190402/345040447.png">
+      </div>
     </div>
-    <div class="kuang">
-      <img class="htmlimg" src="http://static-d.iqiyi.com/paopaoh5/guess/superstar/20190402/345040447.png">
-    </div>
+  </div>
+  <div>
+    <a href="http://static-d.iqiyi.com/paopaoh5/guess/superstar/20190402/345040447.png" download="1" >download</a>
   </div>
   <div>
     <input type="button" id="btn" value="click" />
   </div>
 
   <script type="text/javascript">
+    let getBox = (dom) => {
+      const box = window.getComputedStyle(dom)
+      return {
+        width: parseInt(box.width, 10),
+        height: parseInt(box.height, 10)
+      }
+    }
+
+    let getDPR = () => {
+      // return 1
+      return window.devicePixelRatio
+    }
+
+    let getCanvas = (dom) => {
+      const { width, height } = getBox(dom)
+      const canvas = document.createElement('canvas')
+      const scaleBy = getDPR()
+
+      canvas.width = width * scaleBy
+      canvas.height = height * scaleBy
+      // canvas.style.width = `${width}px`
+      // canvas.style.height = `${height}px`
+
+      canvas.getContext('2d').scale(scaleBy, scaleBy)
+
+      return canvas
+    }
+
     document.getElementById('btn').addEventListener('click', () => {
-      html2canvas(document.getElementById('app'), {
+      let dom = document.getElementById('tt')
+      const { width, height } = getBox(dom)
+      let canvas = getCanvas(dom)
+      html2canvas(dom, {
+        // canvas,
+        width: width,
+        height: height,
+        // scale: getDPR(),
+        scale: 0.5,
         useCORS: true
       }).then((canvas) => {
-        let base64 = canvas.toDataURL('image/png')
-        alert(window.iqiyi)
-        if (window.iqiyi) {
-          window.iqiyi.commonInvoke('JSBRIDGE_SAVE_IMAGE', {
-            imageContentStr: base64
-          }, function (data) {
-          })
-        }
+        let base64 = canvas.toDataURL()
+        let a = document.createElement('a')
+        a.href = base64
+        a.download = 'hha'
+        document.body.appendChild(a)
+        a.click()
+
+        // let img = document.createElement('img')
+        // img.src = base64
+        // img.style.width = width + 'px'
+        // img.style.height = height + 'px'
+        // document.body.appendChild(img)
       })
     })
   </script>

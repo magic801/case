@@ -41,7 +41,9 @@ let vm = new Vue({
   methods: {
     initGraph () {
       var g = new dagreD3.graphlib.Graph()
-        .setGraph({})
+        .setGraph({
+          rankdir: 'LR'
+        })
         .setDefaultEdgeLabel(function() {
             return {};
         });
