@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>css</title>
+  <style type="text/css">
+    .block {
+      position: relative;
+      display: inline-block;
+      width: 60px;
+      height: 60px;
+      /*overflow: hidden;*/
+    }
+
+    .icon {
+      display: inline-block;
+      width: 60px;
+      height: 60px;
+      background: url('./img/test.png') no-repeat center;
+      /*background-size: 100% 100%;*/
+      /*border: 1px dashed blue;*/
+    }
+
+    .gray {
+      background-color: red;
+    }
+
+    .drop {
+      position: relative;
+      left: -60px;
+      filter: drop-shadow( 60px 0 0 red);
+      border-right: 60px solid transparent;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <div class="block">
+      <i class="icon gray"></i>
+    </div>
+    <p>------</p>
+    <div class="block">
+      <i class="icon drop"></i>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+
+  </script>
+</body>
+</html>
