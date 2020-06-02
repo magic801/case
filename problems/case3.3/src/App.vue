@@ -6,19 +6,30 @@
 </template>
 
 <script>
-// import { Babel }  from 'babel-standalone'
 import HelloWorld from './components/HelloWorld'
 
 export default {
   name: 'App',
-
   components: {
     HelloWorld
   },
-
-  created () {
+  created() {
+    let script = `
+      export default {
+        data () {
+          return {
+            name: 'Vuep',
+            features: [
+              'Single File Component',
+              'Babel for ES6/JSX/UMD/CommonJS',
+              'Scoped style',
+              'Customizable JavaScript scope'
+            ]
+          }
+        }
+      }
+    `
     console.log(Babel)
-    // Babel.transform
   }
 }
 </script>
