@@ -2,7 +2,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "html2canvas": "^1.0.0-rc.1",
-    "http-proxy": "^1.17.0",
+    "http-proxy": "^1.18.1",
     "webpack": "^4.30.0"
   },
   "devDependencies": {
