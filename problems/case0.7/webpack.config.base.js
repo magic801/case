@@ -5,7 +5,7 @@ const HelloWorldPlugin = require('./plugins/helloworld.js')
 
 module.exports = {
   entry: {
-    main: path.join(__dirname, './app/main.js'),
+    // main: path.join(__dirname, './app/main.js'),
     m1: path.join(__dirname, './app/main1.js')
   },
 
@@ -28,8 +28,16 @@ module.exports = {
         }
       }]
     }, {
-      test: /\.(png|jpg)$/,
-      use: ['url-loader']
+      test: /\.(png|jpg|gif|woff|svg|eot|ttf)\??.*$/,
+      use: {
+        loader: 'url-loader',
+        options: {
+          limit: 10000
+        }
+      }
+    }, {
+      test: /\.js$/,
+      use: ['babel-loader']
     }]
   },
 

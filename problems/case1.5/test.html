@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>polifill</title>
+</head>
+<body>
+  <script src="./SbPromise.js"></script>
+  <script type="text/javascript">
+    // new SbPromise((resolve, reject) => {
+    //   setTimeout(() => {
+    //     resolve(1)
+    //   }, 800)
+    //   // resolve(1)
+    // }).then((data) => {
+    //   console.log(data)
+    //   return 2
+    // }).then((data) => {
+    //   console.log(data)
+    //   return new SbPromise((resolve) => {
+    //     setTimeout(() => {
+    //       resolve(3)
+    //     }, 200)
+    //   })
+    // }).then((data) => {
+    //   console.log(data)
+    // })
+
+    SbPromise.race([new SbPromise((resolve, reject) => {
+      setTimeout(() => {
+        resolve(1)
+      }, 2500)
+    }), new SbPromise((resolve, reject) => {
+      setTimeout(() => {
+        resolve(2)
+      }, 1500)
+    })]).then((data) => {
+      console.log(data)
+    })
+  </script>
+</body>
+</html>
