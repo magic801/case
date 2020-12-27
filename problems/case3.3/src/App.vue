@@ -1,9 +1,14 @@
-<!-- <template>
+<template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <HelloWorld/>
+    <Preview
+      :value="vueObj" />
+    <input
+      type="button"
+      name=""
+      value="click me."
+      @click="changeTemplate">
   </div>
-</template> -->
+</template>
 
 <script>
 // import HelloWorld from './components/HelloWorld'
@@ -13,7 +18,7 @@ export default {
   name: 'App',
 
   components: {
-    // HelloWorld
+    Preview
   },
 
   data() {
@@ -28,13 +33,13 @@ export default {
     this.vueObj.template = obj.template
   },
 
-  render(h) {
-    return h(Preview, {
-      props: {
-        value: this.vueObj
-      }
-    })
-  },
+  // render(h) {
+  //   return h(Preview, {
+  //     props: {
+  //       value: this.vueObj
+  //     }
+  //   })
+  // },
 
   methods: {
     evalJS(script) {
@@ -47,6 +52,7 @@ export default {
       const result = new Function('__vuep', 'return ' + funStr)({})
       return result
     },
+
     getObj() {
       let template = `
 
@@ -66,7 +72,8 @@ export default {
                 'S1',
                 'B2',
                 'S3',
-                'C4'
+                'C4',
+                ${+new Date()}
               ]
             }
           },
@@ -84,6 +91,12 @@ export default {
         template,
         script
       }
+    },
+
+    changeTemplate() {
+      let obj = this.getObj()
+      this.vueObj = this.evalJS(obj.script)
+      this.vueObj.template = obj.template
     }
   }
 }
