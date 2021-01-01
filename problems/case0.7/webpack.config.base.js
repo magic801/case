@@ -5,13 +5,17 @@ const HelloWorldPlugin = require('./plugins/helloworld.js')
 
 module.exports = {
   entry: {
-    // main: path.join(__dirname, './app/main.js'),
-    m1: path.join(__dirname, './app/main1.js')
+    main: path.join(__dirname, './app/main.js'),
+    // m1: path.join(__dirname, './app/main1.js')
   },
 
   output: {
     path: path.resolve(__dirname, "./dist"),
-    filename: "[name].[hash:4].js"
+    filename: "[name].[hash].js"
+  },
+
+  resolveLoader: {
+    modules: ['./node_modules', './loaders']
   },
 
   module: {
@@ -28,21 +32,38 @@ module.exports = {
         }
       }]
     }, {
-      test: /\.(png|jpg|gif|woff|svg|eot|ttf)\??.*$/,
-      use: {
-        loader: 'url-loader',
-        options: {
-          limit: 10000
-        }
+      test: /\.(png|jpg|gif|woff|svg|eot|ttf)$/,
+      loader: 'url-loader',
+      options: {
+        outputPath: 'images/',
+        esModule: false,
+        limit: 8000
       }
     }, {
       test: /\.js$/,
       use: ['babel-loader']
+    }, {
+      test: /\.ttt$/,
+      loader: 'rename-loader',
+      options: {
+        key: '@@',
+        value: 'love'
+      }
     }]
   },
 
   optimization: {
-    // minimize: true
+    splitChunks: {
+      chunks: 'all',
+      cacheGroups: {
+        vendor: {
+          test: /[\\/]node_modules[\\/]/,
+          chunks: 'initial',
+          name: 'vendor',
+          enforce: true
+        }
+      }
+    }
   },
 
   plugins: [

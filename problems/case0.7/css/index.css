@@ -6,6 +6,6 @@
   width: 50px;
   height: 50px;
   border: 1px solid red;
-  /*background-image: url(../img/qr-s.png);*/
+  background-image: url(../img/qr-s.png);
   background-size: cover;
 }
