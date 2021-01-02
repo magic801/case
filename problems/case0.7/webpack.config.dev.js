@@ -13,6 +13,6 @@ let dev = Object.assign(base, {
   }
 })
 
-// dev.output.publicPath = 'dist'
+dev.output.publicPath = '/'
 
 module.exports = dev

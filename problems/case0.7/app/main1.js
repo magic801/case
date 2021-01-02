@@ -1,10 +1,9 @@
 import '../css/index.css'
-// import qrImage from '../img/qr-s.png'
-import { sayName } from './test'
+
+import { sayName } from './component/t1'
 
 let ele = document.createElement('img')
 ele.classList.add('big-pic')
-// ele.src = qrImage
 ele.src = 'http://m.iqiyipic.com/c.jpg'
 
 function sleep(time = 200) {

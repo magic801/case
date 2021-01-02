@@ -1,17 +1,21 @@
 let path = require("path")
 
+const Webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const HelloWorldPlugin = require('./plugins/helloworld.js')
 
 module.exports = {
   entry: {
-    main: path.join(__dirname, './app/main.js'),
+    import: path.join(__dirname, './app/import.js')
+    // main: path.join(__dirname, './app/main.js'),
     // m1: path.join(__dirname, './app/main1.js')
   },
+  // entry: path.join(__dirname, './app/main.js'),
 
   output: {
     path: path.resolve(__dirname, "./dist"),
-    filename: "[name].[hash].js"
+    chunkFilename: "[name].[contenthash].js",
+    filename: "[name].[contenthash].js"
   },
 
   resolveLoader: {
@@ -41,7 +45,8 @@ module.exports = {
       }
     }, {
       test: /\.js$/,
-      use: ['babel-loader']
+      use: ['babel-loader'],
+      // sideEffects: false
     }, {
       test: /\.ttt$/,
       loader: 'rename-loader',
@@ -56,11 +61,18 @@ module.exports = {
     splitChunks: {
       chunks: 'all',
       cacheGroups: {
+        // common: {
+        //   name: 'common',
+        //   chunks: 'all',
+        //   minSize: 1,
+        //   priority: 0
+        // },
         vendor: {
+          name: 'vendor',
           test: /[\\/]node_modules[\\/]/,
           chunks: 'initial',
-          name: 'vendor',
-          enforce: true
+          enforce: true,
+          priority: 10
         }
       }
     }
@@ -70,6 +82,10 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: path.join(__dirname, './index.html')
     }),
-    new HelloWorldPlugin({})
+    new HelloWorldPlugin({}),
+    new Webpack.DefinePlugin({
+      'window.time': JSON.stringify(+new Date()),
+      'window.name': JSON.stringify('猛哥最帅.')
+    })
   ]
 }

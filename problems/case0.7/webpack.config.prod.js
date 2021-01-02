@@ -6,6 +6,8 @@ const merge = require('webpack-merge')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 
 module.exports = merge(base, {
+  // devtool: 'source-map',
+
 	output: {
     path: path.resolve(__dirname, "./dist"),
     // publicPath: 'http://www.iqiyi.com/'
