@@ -1,0 +1,10 @@
+{
+  "scripts": {
+    "build": "webpack  --mode production --config webpack.config.js",
+    "build:dev": "webpack  --mode development --config webpack.config.js"
+  },
+  "main": "dist/index",
+  "dependencies": {
+    "webpack": "^4.29.6"
+  }
+}

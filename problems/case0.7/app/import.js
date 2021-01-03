@@ -1,3 +1,5 @@
+import customNumber from 'customNumber'
+
 function createButton () {
   const ele = document.createElement('button')
   ele.innerHTML = 'Click me.'
@@ -12,3 +14,5 @@ function createButton () {
 document.body.appendChild(createButton())
 
 console.log('i am import.js.')
+console.log(customNumber)
+console.log(`num 1 english is ${ customNumber.convertNumberToEng(1) }`)

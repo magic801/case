@@ -6,7 +6,8 @@ const HelloWorldPlugin = require('./plugins/helloworld.js')
 
 module.exports = {
   entry: {
-    import: path.join(__dirname, './app/import.js')
+    shimming: path.join(__dirname, './app/shimming.js')
+    // import: path.join(__dirname, './app/import.js')
     // main: path.join(__dirname, './app/main.js'),
     // m1: path.join(__dirname, './app/main1.js')
   },
@@ -73,9 +74,20 @@ module.exports = {
           chunks: 'initial',
           enforce: true,
           priority: 10
+        },
+        lib: {
+          name: 'lib',
+          test: /[\\/]lib[\\/]/,
+          chunks: 'initial',
+          enforce: true,
+          priority: 5
         }
       }
     }
+  },
+
+  externals: {
+    customNumber: "nbNumber"
   },
 
   plugins: [
@@ -86,6 +98,9 @@ module.exports = {
     new Webpack.DefinePlugin({
       'window.time': JSON.stringify(+new Date()),
       'window.name': JSON.stringify('猛哥最帅.')
+    }),
+    new Webpack.ProvidePlugin({
+      customNumber: ['customNumber', 'default']
     })
   ]
 }
