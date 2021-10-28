@@ -15,8 +15,8 @@ module.exports = {
 
   output: {
     path: path.resolve(__dirname, "./dist"),
-    chunkFilename: "[name].[contenthash].js",
-    filename: "[name].[contenthash].js"
+    chunkFilename: "[name].[hash].js",
+    filename: "[name].[hash].js"
   },
 
   resolveLoader: {
@@ -46,7 +46,7 @@ module.exports = {
       }
     }, {
       test: /\.js$/,
-      use: ['babel-loader'],
+      use: ['babel-loader', 'eslint-loader']
       // sideEffects: false
     }, {
       test: /\.ttt$/,
