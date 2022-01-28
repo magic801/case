@@ -81,19 +81,31 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "./app/shimming.js");
+/******/ 	return __webpack_require__(__webpack_require__.s = "./test/index.js");
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./app/shimming.js":
-/*!*************************!*\
-  !*** ./app/shimming.js ***!
-  \*************************/
+/***/ "./test/index.js":
+/*!***********************!*\
+  !*** ./test/index.js ***!
+  \***********************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("/* WEBPACK VAR INJECTION */(function(customNumber) {// import customNumber from 'customNumber'\nconsole.log(customNumber);\nconsole.log(\"num 1 english is \".concat(customNumber.convertNumberToEng(1)));\n/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(!(function webpackMissingModule() { var e = new Error(\"Cannot find module 'nbNumber'\"); e.code = 'MODULE_NOT_FOUND'; throw e; }()))[\"default\"]))\n\n//# sourceURL=webpack:///./app/shimming.js?");
+eval("const bar = __webpack_require__(/*! ./module.js */ \"./test/module.js\")\r\nfunction ff() {\r\n  return bar.bar()\r\n}\r\n\r\nconsole.log(ff())\r\n\n\n//# sourceURL=webpack:///./test/index.js?");
+
+/***/ }),
+
+/***/ "./test/module.js":
+/*!************************!*\
+  !*** ./test/module.js ***!
+  \************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return bar; });\n// exports.bar = function() {\r\n//   return 1\r\n// }\r\n\r\nfunction bar() {\r\n  return 1\r\n}\r\n\r\n\n\n//# sourceURL=webpack:///./test/module.js?");
 
 /***/ })
 

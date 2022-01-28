@@ -1,6 +1,8 @@
 {
+	"type": "modules",
 	"scripts": {
 		"build": "webpack  --mode production --config webpack.config.prod.js",
+		"build:test": "webpack --mode development --config webpack.config.test.js",
 		"build:dev": "webpack  --mode development --config webpack.config.prod.js",
 		"build:watch": "webpack  --mode development --config webpack.config.prod.js --watch",
 		"str": "node_modules/.bin/webpack app/main.js public/bundle.js --mode development",

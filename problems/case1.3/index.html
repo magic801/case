@@ -8,6 +8,7 @@
 <body>
   <div id="container">
     <input type="file" multiple="multiple" accept="image/*" id="files" >
+    <input type="button" id="takePhoto" value="send ajax." >
   </div>
 
   <script type="text/javascript">
@@ -28,6 +29,16 @@
               console.info(blob);
           }
       }
+    })
+
+    document.querySelector('#takePhoto').addEventListener('click', () => {
+      let xhr = new XMLHttpRequest()
+      
+      xhr.open('GET', 'http://10.0.106.223:3211', true)
+      // xhr.open('delete', 'http://10.0.106.223:3211', true)
+      xhr.withCredentials = true
+      xhr.setRequestHeader('content-type', 'application/json')
+      xhr.send()
     })
   </script>
 </body>

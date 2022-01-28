@@ -10,6 +10,8 @@ module.exports = merge(base, {
 
 	output: {
     path: path.resolve(__dirname, "./dist"),
+    chunkFilename: "[name].[chunkhash:8].js",
+    filename: "[name].js"
     // publicPath: 'http://www.iqiyi.com/'
   },
 
