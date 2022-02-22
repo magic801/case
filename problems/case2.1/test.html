@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>settimeOut requestAnimationFrame</title>
+  <meta charset="utf-8">
+</head>
+<body>
+  <textarea id="content"></textarea>
+
+  <script type="text/javascript">
+    console.log(top)
+    console.log(window)
+    console.log(top === window)
+
+    try {
+      console.log('top.location.host')
+      console.log(top.location.host)
+    } catch (er) {
+      top.location.href = window.location.href;
+    }
+    
+    console.log('window.location.host')
+    console.log(window.location.host)
+  </script>
+</body>
+</html>

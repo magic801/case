@@ -33,13 +33,13 @@ export default {
     this.vueObj.template = obj.template
   },
 
-  // render(h) {
-  //   return h(Preview, {
-  //     props: {
-  //       value: this.vueObj
-  //     }
-  //   })
-  // },
+  render(h) {
+    return h(Preview, {
+      props: {
+        value: this.vueObj
+      }
+    })
+  },
 
   methods: {
     evalJS(script) {

@@ -6,13 +6,14 @@ let dev = Object.assign(base, {
 
   devServer: {
   	port: 9001,
-    contentBase: path.join(__dirname, './dist'),
+    contentBase: [ path.join(__dirname, './dist'), path.join(__dirname, './lib') ],
     open: true,
     inline: true,
+    // inline: false,
     hot: true
   }
 })
 
-dev.output.publicPath = '/'
+// dev.output.publicPath = path.join(__dirname, './dist')
 
 module.exports = dev

@@ -12,27 +12,100 @@
   <div id="example"></div>
 
   <script type="text/babel">
-    class NotesList extends React.Component{
-      render () {
-        return (
-          <ol>
-          {
-            React.Children.map(this.props.children, function (child) {
-              return <li>{child}</li>;
-            })
-          }
-          </ol>
-        );
+    import { useState } from 'react'
+
+    // class NotesList extends React.Component{
+    //   constructor(props) {
+    //     super(props)
+
+    //     this.state = {
+    //       open: false,
+    //       time: +new Date()
+    //     }
+
+    //     this.onClick = this.onClick.bind(this)
+    //   }
+
+    //   componentDidMount() {
+    //     this.timer = setInterval(() => {
+    //       this.tick()
+    //     }, 1000)
+    //   }
+
+    //   componentWillUnmount() {
+    //     clearInterval(this.timer)
+    //   }
+
+    //   tick() {
+    //     this.setState({
+    //       time: +new Date()
+    //     })
+    //   }
+
+    //   onClick(e) {
+    //     console.log(e)
+    //     console.log(this)
+    //   }
+
+    //   onClose() {
+    //     console.log(this)
+    //     this.setState({
+    //       open: false
+    //     })
+    //   }
+
+    //   onOpen() {
+    //     console.log(this)
+    //     this.setState({
+    //       open: true
+    //     })
+    //   }
+
+    //   render () {
+    //     const btn = this.state.open
+    //       ? <p onClick={ () => this.onClose() }>关闭</p>
+    //       : <p onClick={ () => this.onOpen() }>开启</p>
+    //     return (
+    //       <div>
+    //         { btn }
+    //         <ol>
+    //         {
+    //           React.Children.map(this.props.children, function (child) {
+    //             return <li>{child}</li>;
+    //           })
+    //         }
+    //         </ol>
+    //       </div>
+    //     );
+    //   }
+    // };
+
+    // const ele = (
+    //   <div>
+    //     <NotesList name="kk">
+    //       <span>hello</span>
+    //       <span>world</span>
+    //     </NotesList>
+    //   </div>
+    // );
+
+    function Hello() {
+      const [count, setCount] = useState(0)
+
+      if (props.isLogin) {
+        return <span>{ count }</span>
+      } else {
+        return <span>2</span>
       }
-    };
+    }
+
+    const ele = <Hello isLogin={ false }></Hello>
 
     ReactDOM.render(
-      <NotesList>
-        <span>hello</span>
-        <span>world</span>
-      </NotesList>,
+      ele,
       document.getElementById('example')
     );
+    
   </script>
 
 </body>

@@ -1,0 +1,3 @@
+[submodule "sub/js-bridge"]
+	path = sub/js-bridge
+	url = git@coding.jd.com:larges-web/js-bridge.git

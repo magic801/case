@@ -1,0 +1,16 @@
+{
+  "name": "case1.3",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "type": "commonjs",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "exports": {
+    "t1": "./module.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

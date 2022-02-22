@@ -6,8 +6,8 @@ const HelloWorldPlugin = require('./plugins/helloworld.js')
 
 module.exports = {
   entry: {
-    shimming: path.join(__dirname, './app/shimming.js')
-    // import: path.join(__dirname, './app/import.js')
+    // shimming: path.join(__dirname, './app/shimming.js')
+    import: path.join(__dirname, './app/import.js')
     // main: path.join(__dirname, './app/main.js'),
     // m1: path.join(__dirname, './app/main1.js')
   },
@@ -15,8 +15,8 @@ module.exports = {
 
   output: {
     path: path.resolve(__dirname, "./dist"),
-    chunkFilename: "[name].[contenthash].js",
-    filename: "[name].[contenthash].js"
+    chunkFilename: "[name].[chunkhash].js",
+    filename: "[name].js"
   },
 
   resolveLoader: {
@@ -46,7 +46,7 @@ module.exports = {
       }
     }, {
       test: /\.js$/,
-      use: ['babel-loader'],
+      use: ['babel-loader']
       // sideEffects: false
     }, {
       test: /\.ttt$/,
