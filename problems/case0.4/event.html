@@ -17,7 +17,7 @@
 </head>
 <body>
   <div id="app">
-    <h6>{{ message }}</h6>
+    <h6 ref="tgg">{{ message + '1' + 'message' }}</h6>
     <cp1></cp1>
     <child></child>
   </div>
@@ -59,16 +59,21 @@
 
       mounted () {
         console.log(`mounted  ${this.$el}  ${this.message}`)
+        this.message = 'hehe'
+        console.log(this.$refs.tgg.innerHTML)
+        this.$nextTick(() => {
+          console.log(this.$refs.tgg.innerHTML)
+        })
       },
 
       beforeUpdate () {
-        console.log(`beforeUpdate  ${this.$el}  ${this.message}`)
-        console.log(this.$el)
+        // console.log(`beforeUpdate  ${this.$el}  ${this.message}`)
+        // console.log(this.$el)
       },
 
       updated () {
-        console.log(`updated  ${this.$el}  ${this.message}`)
-        console.log(this.$el)
+        // console.log(`updated  ${this.$el}  ${this.message}`)
+        // console.log(this.$el)
       }
     })
   </script>
