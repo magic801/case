@@ -7,9 +7,9 @@ const HelloWorldPlugin = require('./plugins/helloworld.js')
 module.exports = {
   entry: {
     // shimming: path.join(__dirname, './app/shimming.js')
-    import: path.join(__dirname, './app/import.js')
+    // import: path.join(__dirname, './app/import.js'),
     // main: path.join(__dirname, './app/main.js'),
-    // m1: path.join(__dirname, './app/main1.js')
+    m1: path.join(__dirname, './app/main1.js')
   },
   // entry: path.join(__dirname, './app/main.js'),
 
@@ -24,7 +24,8 @@ module.exports = {
   },
 
   module: {
-    rules: [{
+    rules: [
+      {
       test: /\.css$/,
       use: [{
         loader: 'style-loader'
@@ -36,7 +37,8 @@ module.exports = {
           style: path.join(__dirname, './special/cop-a.css')
         }
       }]
-    }, {
+    }, 
+    {
       test: /\.(png|jpg|gif|woff|svg|eot|ttf)$/,
       loader: 'url-loader',
       options: {

@@ -7,6 +7,9 @@ function createButton () {
     import (/* webpackChunkName: 'iii' */ "./component/t1.js").then((t1) => {
       t1.sayName('lala.1111')
     })
+    import('./component/t2.js').then(t2 => {
+      t2.say('啥玩楞')
+    })
   }
   return ele
 }
