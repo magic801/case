@@ -206,7 +206,28 @@
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var customNumber__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! customNumber */ \"customNumber\");\n/* harmony import */ var customNumber__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(customNumber__WEBPACK_IMPORTED_MODULE_0__);\n\n\nfunction createButton() {\n  var ele = document.createElement('button');\n  ele.innerHTML = 'Click me.';\n\n  ele.onclick = function (e) {\n    __webpack_require__.e(/*! import() | iii */ \"iii\").then(__webpack_require__.bind(null, /*! ./component/t1.js */ \"./app/component/t1.js\")).then(function (t1) {\n      t1.sayName('lala.111');\n    });\n  };\n\n  return ele;\n}\n\ndocument.body.appendChild(createButton());\nconsole.log('i am import.js.');\nconsole.log(customNumber__WEBPACK_IMPORTED_MODULE_0___default.a);\nconsole.log(\"num 1 english is \".concat(customNumber__WEBPACK_IMPORTED_MODULE_0___default.a.convertNumberToEng(1)));\n\n//# sourceURL=webpack:///./app/import.js?");
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var customNumber__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! customNumber */ "customNumber");
+/* harmony import */ var customNumber__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(customNumber__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function createButton() {
+  var ele = document.createElement('button');
+  ele.innerHTML = 'Click me.';
+
+  ele.onclick = function (e) {
+    __webpack_require__.e(/*! import() | iii */ "iii").then(__webpack_require__.bind(null, /*! ./component/t1.js */ "./app/component/t1.js")).then(function (t1) {
+      t1.sayName('lala.1111');
+    });
+  };
+
+  return ele;
+}
+
+document.body.appendChild(createButton());
+console.log('i a1m import.js.');
+console.log(customNumber__WEBPACK_IMPORTED_MODULE_0___default.a);
+console.log("num 1 english is ".concat(customNumber__WEBPACK_IMPORTED_MODULE_0___default.a.convertNumberToEng(1)));
 
 /***/ }),
 
@@ -217,8 +238,9 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var cust
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("module.exports = nbNumber;\n\n//# sourceURL=webpack:///external_%22nbNumber%22?");
+module.exports = nbNumber;
 
 /***/ })
 
 /******/ });
+//# sourceMappingURL=import.js.map
