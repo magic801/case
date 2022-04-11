@@ -1,4 +1,4 @@
 module.exports = function (source) {
-  console.log(`-- ${ JSON.stringify(this.query) } --`)
-  return source + `\n.hahahah{};\n`
+  console.log(source)
+  return (source + `\n.hahahah{};\n`).replace(/\/\*(.*)\*\//g, '$1')
 }
