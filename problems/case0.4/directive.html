@@ -10,7 +10,7 @@
   <div id="app">
     <h6>{{ message }}</h6>
     <p v-demo="{color: 'red', text: 'nihao'}"></p>
-    <input v-focus>
+    <input ref="input1" v-fo1>
     <cp1></cp1>
     <child></child>
   </div>
@@ -44,6 +44,12 @@
       }
     })
 
+    Vue.directive('fo1', {
+      inserted: (el) => {
+        // alert(el)
+      }
+    })
+
     let child = {
       template: '<p>this is child.</p>'
     }
@@ -62,6 +68,13 @@
 
       created () {
         console.log(`in vue`)
+      },
+
+      mounted() {
+        console.log(this.$refs.input1)
+        this.$refs.input1.addEventListener('compositionupdate', (event) => {
+          console.log(JSON.stringify(event))
+        })
       },
 
       components: {
