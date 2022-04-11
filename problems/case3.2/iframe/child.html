@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>child</title>
+</head>
+<body>
+  <p>i am the child.</p>
+  <input id="btn" type="button" name="" value="click me.">
+  <script>
+    window.onload = function () {
+      document.getElementById('btn').addEventListener('click', () => {
+        console.log('here.')
+        window.parent.postMessage('i am you son.', '*') 
+      })
+    }
+  </script>
+</body>
+</html>
