@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>normal js.</title>
+</head>
+<body>
+  <button id="btn-3000">3000</button>
+  <button id="btn-4000">4000</button>
+  <div>
+    <pre id="info"></pre>
+  </div>
+  <script>
+  window.addEventListener('error', evt => {
+    const info = evt.error ? evt.error.stack : evt.message;
+    document.querySelector('#info').textContent = info;
+  });
+</script>
+
+  <script crossorigin="anonymous" type="text/javascript" src="http://127.0.0.1:3000/cors.js"></script>
+  <script crossorigin="anonymous" type="text/javascript" src="http://127.0.0.1:3000/a.js"></script>
+  <script type="text/javascript" src="http://127.0.0.1:4000/b.js"></script>
+
+  <div>coming.</div>
+</body>
+</html>

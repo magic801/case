@@ -4,6 +4,7 @@
     "express": "^4.17.1",
     "html2canvas": "^1.0.0-rc.1",
     "http-proxy": "^1.17.0",
+    "vue-loader": "^17.0.0",
     "webpack": "^4.30.0"
   },
   "devDependencies": {

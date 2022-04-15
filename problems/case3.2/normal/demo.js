@@ -1,42 +1,20 @@
-function A() {
-    this.name = "A";
-    this.arr = new Array();
-    this.put = function(para) {
-        this.arr[this.arr.length] = para;
+function Foo() {
+    this.name = 'foo'
+    return 3
+}
+
+console.log(new Foo())
+
+function _new(construct, ...argvs) {
+    var child = {}
+    child.__proto__ = construct.prototype
+    var result = construct.call(child, ...argvs)
+    if (typeof result === 'object') {
+        return result
+    } else {
+        return child
     }
 }
 
-function B() {
-    this.name = "B";
-    this.show = "";
-}
+console.log(a.b)
 
-var obj = new A();
-
-var b = new B();
-b.show = function() {
-    alert("function 1");
-}
-
-var b2 = new B();
-b2.show = function() {
-    alert("function 2");
-}
-
-obj.put(b);
-obj.put(b2);
-console.log(serialize(obj, 'demon'))
-
-// document.getElementById('atag').addEventListener('click', (e) => {
-//     e.preventDefault()
-//     return false
-// })
-
-document.getElementById('atag').onclick = function (e) {
-    e.preventDefault()
-}
-
-function aClick(e) {
-    e.preventDefault()
-    return false
-}
