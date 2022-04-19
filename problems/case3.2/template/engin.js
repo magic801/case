@@ -8,7 +8,14 @@ const TOKEN_TYPE_ENUM = {
 const AST_TYPE_ENUM = {
   program: 'Program',
   callExpression: 'CallExpression',
-  numberLiteral: 'NumberLiteral'
+  numberLiteral: 'NumberLiteral',
+  expressionStatement: 'ExpressionStatement',
+  identifier: 'Identifier'
+}
+
+const ACTION_TYPE_ENUM = {
+  enter: 'enter',
+  exit: 'exit'
 }
 
 function tokenizer(input) {
@@ -95,7 +102,7 @@ function parser(tokens) {
     if (item.type === TOKEN_TYPE_ENUM.name) {
       const tmp = {
         type: AST_TYPE_ENUM.callExpression,
-        value: item.value,
+        name: item.value,
         params: []
       }
       container.push(tmp)
@@ -119,9 +126,109 @@ function parser(tokens) {
  return ast
 }
 
+function traverser(ast, visitor) {
+  function traverserArray(array, parent) {
+    array.forEach(item => {
+      traverserNode(item, parent)
+    })
+  }
+
+  function traverserNode(node, parent) {
+    let method = visitor[node.type]
+
+    if (method && method[ACTION_TYPE_ENUM.enter]) {
+      method[ACTION_TYPE_ENUM.enter](node, parent)
+    }
+
+    switch (node.type) {
+      case AST_TYPE_ENUM.program:
+        traverserArray(node.body, node)
+        break
+
+      case AST_TYPE_ENUM.callExpression:
+        traverserArray(node.params, node)
+        break
+
+      case AST_TYPE_ENUM.numberLiteral:
+        break
+    }
+  }
+
+  traverserNode(ast, null)
+}
+
+function transformer(ast) {
+  let newAst = {
+    type: AST_TYPE_ENUM.program,
+    body: []
+  }
+
+  ast._context = newAst.body
+
+  traverser(ast, {
+    [AST_TYPE_ENUM.callExpression]: {
+      [ACTION_TYPE_ENUM.enter](node, parent) {
+        let expression = {
+          type: AST_TYPE_ENUM.callExpression,
+          callee: {
+            type: AST_TYPE_ENUM.identifier,
+            name: node.name
+          },
+          arguments: []
+        }
+
+        node._context = expression.arguments
+
+        if (parent.type !== AST_TYPE_ENUM.callExpression) {
+          expression = {
+            type: AST_TYPE_ENUM.expressionStatement,
+            expression: expression
+          }
+        }
+
+        parent._context.push(expression)
+      }
+    },
+
+    [AST_TYPE_ENUM.numberLiteral]: {
+      [ACTION_TYPE_ENUM.enter](node, parent) {
+        let expression = {
+          type: node.type,
+          value: node.value
+        }
+
+        parent._context.push(expression)
+      }
+    }
+  })
+
+  return newAst
+}
+
+function codeGenerator(node) {
+  switch(node.type) {
+    case AST_TYPE_ENUM.program:
+      return node.body.map(item => codeGenerator(item)).join('\n')
+
+    case AST_TYPE_ENUM.expressionStatement:
+      return codeGenerator(node.expression)
+
+    case AST_TYPE_ENUM.callExpression:
+      return codeGenerator(node.callee) + '(' + node.arguments.map(item => codeGenerator(item)).join(',') + ')'
+
+    case AST_TYPE_ENUM.identifier:
+      return node.name
+
+    case AST_TYPE_ENUM.numberLiteral:
+      return node.value
+  }
+}
+
 module.exports = {
   tokenizer,
-  parser
+  parser,
+  transformer,
+  codeGenerator
 }
 
 
