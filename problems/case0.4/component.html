@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>vue</title>
+  <!-- <link rel="stylesheet" type="text/css" href="./style.css"> -->
+  <script src="./node_modules/vue/dist/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <global-com></global-com>
+    <child
+      :age="18"
+    ></child>
+  </div>
+
+  <script type="text/javascript">
+    Vue.component('globalCom', {
+      template: '<p>this is globalCom</p>'
+    })
+
+    let child = {
+      props: {
+        age: {
+          type: Number,
+          default: 23
+        }
+      },
+      template: '<p>this is {{ age }}</p>',
+      data() {
+        return {
+          msg1: 'haha'
+        }
+      }
+    }
+
+    let vm = new Vue({
+      el: '#app',
+      // template: '<div><span>ss</span></div>',
+      data () {
+        return {
+          message: 'haha'
+        }
+      },
+
+      components: {
+        child
+      },
+
+      beforeCreate () {
+        console.log(`beforeCreate  ${this.$el}  ${this.message}`)
+      },
+
+      created () {
+        console.log(`create  ${this.$el}  ${this.message}`)
+      },
+
+      beforeMount () {
+        console.log(`beforeMount  ${this.$el}  ${this.message}`)
+      },
+
+      mounted () {
+        console.log(`mounted  ${this.$el}  ${this.message}`)
+        this.message = 'hehe'
+      },
+
+      beforeUpdate () {
+      },
+
+      updated () {
+      }
+    })
+  </script>
+</body>
+</html>

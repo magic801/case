@@ -1,0 +1,86 @@
+.block {
+  position: relative;
+  display: inline-block;
+  width: 0.2rem;
+  height: 0.2rem;
+  overflow: auto;
+  background-color: lightgray;
+  border: 1px solid green;
+  padding: 10px;
+}
+
+.icon {
+  display: inline-block;
+  width: 60px;
+  /*height: 2rem;*/
+  height: 60px;
+  background: url('./img/test.png') no-repeat center;
+  /*background-size: 100% 100%;*/
+  /*border: 1px dashed blue;*/
+}
+
+.triangle {
+  display: inline-block;
+  height: 0;
+  width: 0;
+  border-right: transparent;
+  border-bottom: 10px solid transparent;
+  border-left: 20px solid red;
+  border-top: 10px solid transparent;
+  transition-duration: .2s;
+
+  /*box-shadow: 2px 2px 4px gray;*/
+  filter: drop-shadow(2px 2px 4px green);
+}
+
+.triangle:hover {
+  /*background-color: green;*/
+  transform: rotateZ(180deg);
+  transition-duration: 2s;
+}
+
+.progress {
+  height: 15px;
+  width: 250px;
+  background-color: lightgray;
+}
+
+@keyframes pb {
+  from {
+    width: 0%;
+  }
+
+  to {
+    width: 100%;
+  }
+}
+
+.pbar {
+  width: 0%;
+  height: 100%;
+  background-color: red;
+  animation-name: pb;
+  animation-duration: 1s;
+}
+
+.ie-container {
+  box-sizing: border-box;
+  border: 1px solid red;
+  display: inline-block;
+  padding: 20px;
+  margin: 20px;
+  background-color: green;
+  width: 50px;
+  height: 50px;
+}
+
+.content-container {
+  box-sizing: content-box;
+  border: 1px solid red;
+  display: inline-block;
+  padding: 20px;
+  margin: 20px;
+  background-color: green;
+  width: 50px;
+  height: 50px;
+}

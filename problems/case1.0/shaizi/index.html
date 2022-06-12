@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>css</title>
+  <style type="text/css">
+    .sz-1, .sz-2, .sz-3, .sz-4, .sz-5, .sz-6 {
+      width: 80px;
+      height: 80px;
+      border-radius: 6px;
+      border: 1px solid lightgray;
+    }
+
+    .contanier {
+      margin: 5px;
+      height: 70px;
+      display: flex;
+    }
+
+    .point {
+      height: 10px;
+      width: 10px;
+      border-radius: 10px;
+      background-color: gray;
+    }
+
+    .sz-1 .contanier {
+      justify-content: center;
+      align-items: center;
+    }
+
+    .sz-2 .contanier {
+      justify-content: space-between;
+      align-content: space-between;
+    }
+
+    .sz-2 .contanier .point:nth-child(2) {
+      /*align-self: flex-end;*/
+    }
+
+    .sz-3 .contanier {
+      justify-content: space-between;
+    }
+
+    .sz-3 .contanier .point:nth-child(2) {
+      align-self: center;
+    }
+
+    .sz-3 .contanier .point:nth-child(3) {
+      align-self: flex-end;
+    }
+
+    .sz-4 .contanier {
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .sz-4 .contanier .point:nth-child(1) {
+      margin-right: 50px;
+    }
+
+    .sz-4 .contanier .point:nth-child(3) {
+      margin-right: 50px;
+      align-self: flex-end;
+    }
+
+    .sz-4 .contanier .point:nth-child(4) {
+      align-self: flex-end;
+    }
+
+    .sz-5 .contanier {
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .sz-5 .contanier .point:nth-child(1) {
+      margin-right: 50px;
+    }
+
+    .sz-5 .contanier .point:nth-child(3) {
+      margin: 0 30px;
+      align-self: center;
+    }
+
+    .sz-5 .contanier .point:nth-child(4) {
+      margin-right: 50px;
+      align-self: flex-end;
+    }
+
+    .sz-5 .contanier .point:nth-child(5) {
+      align-self: flex-end;
+    }
+
+    .sz-6 .contanier {
+      justify-content: space-between;
+      align-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .sz-6 .contanier .point:nth-child(1) {
+      margin-right: 20px;
+    }
+
+    .sz-6 .contanier .point:nth-child(2) {
+      margin-right: 20px;
+    }
+
+    .sz-6 .contanier .point:nth-child(4) {
+      margin-right: 20px;
+    }
+
+    .sz-6 .contanier .point:nth-child(5) {
+      margin-right: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="sz-1">
+    <div class="contanier">
+      <div class="point"></div>
+    </div>
+  </div>
+
+  <div class="sz-2">
+    <div class="contanier">
+      <div class="point"></div>
+      <div class="point"></div>
+    </div>
+  </div>
+
+  <div class="sz-3">
+    <div class="contanier">
+      <div class="point"></div>
+      <div class="point"></div>
+      <div class="point"></div>
+    </div>
+  </div>
+
+  <div class="sz-4">
+    <div class="contanier">
+      <div class="point"></div>
+      <div class="point"></div>
+      <div class="point"></div>
+      <div class="point"></div>
+    </div>
+  </div>
+
+  <div class="sz-5">
+    <div class="contanier">
+      <div class="point"></div>
+      <div class="point"></div>
+      <div class="point"></div>
+      <div class="point"></div>
+      <div class="point"></div>
+    </div>
+  </div>
+
+  <div class="sz-6">
+    <div class="contanier">
+      <div class="point"></div>
+      <div class="point"></div>
+      <div class="point"></div>
+      <div class="point"></div>
+      <div class="point"></div>
+      <div class="point"></div>
+    </div>
+  </div>
+</body>
+</html>

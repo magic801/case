@@ -34,20 +34,63 @@
       border-left: 20px solid red;
       border-top: 10px solid transparent;
     }
+
+    #nav li + li {
+      border-top: 1px solid green;
+    }
+
+    .weiys {
+
+    }
+
+    .weiys:before {
+      content: '#';
+    }
+
+    .weiys:after {
+      content: '$';
+    }
+
+    .flex-container {
+      position: relative;
+      /*display: flex;*/
+      justify-content: space-around;
+      align-items: center;
+      height: 400px;
+    }
+
+    .flex-container div {
+      width: 80px;
+      height: 160px;
+      border: 1px solid gray;
+    }
+
+    .flex-container div[class] {
+      width: 80px;
+      height: 120px;
+      border: 1px solid gray;
+    }
+
+    @media (min-width: 600px) {
+      .flex-container {
+        color: red;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .flex-container {
+        color: green;
+      }
+    }
   </style>
 </head>
 <body>
-  <!-- <div>
-    <div class="block">
-      <i class="icon gray"></i>
-      <p style="font-size: 14px; ">123</p>
-    </div>
-  </div> -->
-
-  <div class="triangle"></div>
-
-  <script type="text/javascript">
-    // document.querySelector('html').style.fontSize = document.documentElement.clientWidth + 'px'
-  </script>
+  <div class="flex-container">
+    <!-- <div class="d1">A</div>
+    <div>B</div> -->
+    <div class="d3">C</div>
+    <!-- <div>D</div>
+    <div>E</div> -->
+  </div>
 </body>
 </html>
