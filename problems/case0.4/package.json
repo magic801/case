@@ -3,7 +3,7 @@
     "vue-server-renderer": "^2.6.10"
   },
   "dependencies": {
-    "express": "^4.16.4",
+    "express": "^4.17.3",
     "vue": "^2.6.10"
   }
 }
